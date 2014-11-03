@@ -1,11 +1,14 @@
 var browserify = require('browserify'),
     gulp = require('gulp'),
+    less = require('gulp-less'),
+    prefix = require('gulp-autoprefixer'),
     source = require("vinyl-source-stream"),
     reactify = require('reactify');
 
 
 var paths = {
     layout: ['./src/index.html'],
+    less: ['./src/less/**/*.less'],
     js: './src/main.js'
 };
 
@@ -20,12 +23,18 @@ gulp.task('browserify-reactify', function() {
 });
 
 gulp.task('assets', function() {
-    gulp.src('src/index.html')
+    gulp.src(paths.layout)
+        .pipe(gulp.dest('./build'));
+
+    gulp.src(paths.less)
+        .pipe(less())
+        .pipe(prefix({ cascade: true }))
         .pipe(gulp.dest('./build'));
 });
 
 gulp.task('watch', function() {
     gulp.watch(paths.layout, ['assets']);
+    gulp.watch(paths.less, ['assets']);
     gulp.watch(paths.js, ['browserify-reactify']);
 });
 
