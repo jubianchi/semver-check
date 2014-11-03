@@ -2,9 +2,56 @@
 <html>
     <head>
         <title>Online Semver checker</title>
+        <style>
+            .avatars {
+                text-align: center;
+            }
+
+            .avatars ul {
+                margin: 0;
+                padding: 0;
+            }
+
+            .avatars li {
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+                display: inline-block;
+            }
+
+            .avatar img {
+                width: 150px;
+                border-radius: 50%;
+                margin-bottom: 10px;
+                display: block;
+            }
+
+            .avatar + .avatar {
+                margin-left: 50px;
+            }
+        </style>
     </head>
     <body>
         <div id="content"></div>
+
+        <div class="avatars">
+            <p>Brought to you by...</p>
+            <ul>
+                <li class="avatar">
+                    <a href="#">
+                        <img src="https://avatars2.githubusercontent.com/u/807362?v=2&s=400"/>
+                        @overnetcity
+                    </a>
+                </li>
+                <li class="avatar">
+                    <a href="#">
+                        <img src="https://avatars3.githubusercontent.com/u/327237?v=2&s=460"/>
+                        @jubianchi
+                    </a>
+                </li>
+            </ul>
+        </div>
+
         <script src="js/app.js"></script>
     </body>
 </html>
