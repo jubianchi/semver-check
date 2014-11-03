@@ -1,0 +1,35 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+#content {
+  text-align: center;
+}
+
+.avatars {
+  text-align: center;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    .avatar {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      display: inline-block;
+
+      & + .avatar {
+        margin-left: 50px;
+      }
+
+      img {
+        width: 150px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        display: block;
+        border: 5px solid black;
+      }
+    }
+  }
+}
