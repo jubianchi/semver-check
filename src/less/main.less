@@ -1,5 +1,8 @@
+@borderRadius: 0.2em;
+
 body {
   font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
 }
 
 #content {
@@ -31,5 +34,26 @@ body {
         border: 5px solid black;
       }
     }
+  }
+}
+
+input {
+  font-size: 1.5em;
+  padding: 0.5em;
+  border: 1px solid #CFCFCF;
+
+  &:first-of-type {
+    border-right: none;
+    border-radius: @borderRadius 0 0 @borderRadius;
+  }
+
+  &:last-of-type {
+    border-left: none;
+    border-radius: 0 @borderRadius @borderRadius 0;
+  }
+
+  & + input {
+    border-right: none;
+    border-radius: 0;
   }
 }
