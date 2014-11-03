@@ -1,8 +1,12 @@
 @borderRadius: 0.2em;
+@elementPadding: 0.5em;
 
 body {
+  padding: 0;
+  margin: 0;
   font-family: 'Montserrat', sans-serif;
   font-size: 15px;
+  text-align: center;
 }
 
 #content {
@@ -11,6 +15,13 @@ body {
 
 .avatars {
   text-align: center;
+  background-color: fadeout(#CFCFCF, 70%);
+  padding: @elementPadding 0;
+  margin: 2em 0 0 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
 
   ul {
     margin: 0;
@@ -27,7 +38,7 @@ body {
       }
 
       img {
-        width: 150px;
+        width: 100px;
         border-radius: 50%;
         margin-bottom: 10px;
         display: block;
@@ -39,7 +50,7 @@ body {
 
 input {
   font-size: 1.5em;
-  padding: 0.5em;
+  padding: @elementPadding;
   border: 1px solid #CFCFCF;
 
   &:first-of-type {
@@ -55,5 +66,9 @@ input {
   & + input {
     border-right: none;
     border-radius: 0;
+  }
+
+  &.error {
+    color: #D60000;
   }
 }

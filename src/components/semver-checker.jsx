@@ -11,9 +11,12 @@ var SemverChecker = React.createClass({
             alert(semverData.version + " version doesn't satisfie " + semverData.constraint);
         }
     },
+    handleSemverValidate: function(semverData) {
+        return semver.valid(semverData.version);
+    },
     render: function() {
         return (
-            <SemverCheckerForm onSemverCheck={this.handleSemverCheck} />
+            <SemverCheckerForm onSemverCheck={this.handleSemverCheck} onSemverValidate={this.handleSemverValidate} />
         );
     }
 });

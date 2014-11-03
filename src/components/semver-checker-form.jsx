@@ -15,6 +15,14 @@ var SemverCheckerForm = React.createClass({
         this.refs.constraint.getDOMNode().value = constraint;
         this.refs.version.getDOMNode().value = version;
 
+        if (!this.props.onSemverValidate({ version: version })) {
+            this.refs.version.getDOMNode().classList.add('error');
+
+            return;
+        }
+
+        this.refs.version.getDOMNode().classList.remove('error');
+
         this.props.onSemverCheck({ version: version, constraint: constraint });
 
         return;
@@ -26,7 +34,7 @@ var SemverCheckerForm = React.createClass({
                 <input type="text" placeholder="Constraint" ref="constraint" />
                 <input type="text" placeholder="Version" ref="version" />
 
-                <input type="submit" value="Post" />
+                <input type="submit" value="Check!" />
             </form>
         );
     }
