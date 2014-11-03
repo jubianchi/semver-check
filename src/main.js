@@ -12,11 +12,11 @@ var SemverCheckerForm = React.createClass({
             return;
         }
 
-        alert(semver.satisfies(version, constraint));
-
-        // Inject current values
+        // Re-inject current values
         this.refs.constraint.getDOMNode().value = constraint;
         this.refs.version.getDOMNode().value = version;
+
+        this.props.onSemverCheck({ version: version, constraint: constraint });
 
         return;
     },
@@ -34,9 +34,17 @@ var SemverCheckerForm = React.createClass({
 });
 
 var SemverChecker = React.createClass({
+    handleSemverCheck: function(semverData) {
+
+        if (semver.satisfies(semverData.version, semverData.constraint)) {
+            alert(semverData.version + " version satisfies " + semverData.constraint);
+        } else {
+            alert(semverData.version + " version doesn't satisfie " + semverData.constraint);
+        }
+    },
     render: function() {
         return (
-            <SemverCheckerForm />
+            <SemverCheckerForm onSemverCheck={this.handleSemverCheck} />
         );
     }
 });
