@@ -9,13 +9,13 @@ var browserify = require('browserify'),
 var paths = {
     layout: ['./src/index.html'],
     less: ['./src/less/**/*.less'],
-    js: './src/main.js'
+    js: ['./src/main.js', './src/components/*.jsx']
 };
 
 gulp.task('browserify-reactify', function() {
     var b = browserify();
     b.transform(reactify);
-    b.add(paths.js);
+    b.add('./src/main.js');
 
     return b.bundle()
         .pipe(source('app.js'))
