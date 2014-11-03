@@ -8,9 +8,6 @@ var SemverCheckerForm = React.createClass({
         var constraint = this.refs.constraint.getDOMNode().value.trim(),
             version = this.refs.version.getDOMNode().value.trim();
 
-        constraint = semver.clean(constraint);
-        version = semver.clean(version);
-
         if (!constraint || !version) {
             return;
         }
