@@ -29,4 +29,7 @@ gulp.task('watch', function() {
     gulp.watch(paths.js, ['browserify-reactify']);
 });
 
-gulp.task('default', ['watch', 'assets', 'browserify-reactify']);
+gulp.task('prod', ['assets', 'browserify-reactify']);
+gulp.task('dev', ['watch', 'prod']);
+gulp.task('default', ['prod']);
+
