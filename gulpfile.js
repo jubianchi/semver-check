@@ -29,7 +29,10 @@ gulp.task('assets', function() {
 
     gulp.src(paths.less)
         .pipe(less())
-        .pipe(prefix({ cascade: true }))
+        .pipe(prefix({
+            cascade: true,
+            browser: ['last 5 versions']
+        }))
         .pipe(gulp.dest('./build'));
 
     gulp.src(paths.images)

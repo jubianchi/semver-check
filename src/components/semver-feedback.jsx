@@ -1,43 +1,26 @@
-var React = require('react/addons');
+var React = require('react');
 
-var If = React.createClass({
+var SemverFeedback = React.createClass({
         render: function() {
-            if (this.props.test) {
-                return this.props.children;
+            if (true === this.props.satisfies) {
+                return (
+                    <div className="well success">
+                        <code>{ this.props.version }</code> satisfies contraint <code>{ this.props.constraint }</code>
+                    </div>
+                );
             }
 
-            return false;
-        }
-    }),
-
-    SemverFeedback = React.createClass({
-        render: function() {
-            var cx = React.addons.classSet,
-                classes = cx({
-                    well: true,
-                    error: this.props.satisfies === false,
-                    success: this.props.satisfies === true
-                  });
+            if (false === this.props.satisfies) {
+                return (
+                    <div className="well error">
+                        <code>{ this.props.version }</code> does not satisfy contraint <code>{ this.props.constraint }</code>
+                    </div>
+                );
+            }
 
             return (
-                <div className={ classes }>
-                    <If test={ this.props.satisfies === undefined || this.props.satisfies === null }>
-                        <span>Enter a constraint and a version to check if it matches.</span>
-                    </If>
-
-                    <If test={ this.props.satisfies === false }>
-                        <p>
-                            <code>{ this.props.version }</code> does not satisfy contraint <code>{ this.props.constraint }</code>
-                        </p>
-                    </If>
-
-                    <If test={ this.props.satisfies === true }>
-                        <div>
-                            <p>
-                                <code>{ this.props.version }</code> satisfy contraint <code>{ this.props.constraint }</code>
-                            </p>
-                        </div>
-                    </If>
+                <div className="well">
+                    <span>Enter a constraint and a version to check if they match</span>
                 </div>
             );
         }
