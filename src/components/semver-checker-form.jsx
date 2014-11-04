@@ -9,10 +9,6 @@ var SemverCheckerForm = React.createClass({
             return;
         }
 
-        // Re-inject current values
-        this.refs.constraint.getDOMNode().value = constraint;
-        this.refs.version.getDOMNode().value = version;
-
         if (!this.props.onSemverValidate({ version: version })) {
             this.refs.version.getDOMNode().classList.add('error');
 

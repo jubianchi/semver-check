@@ -1,6 +1,7 @@
 var React = require('react'),
     semver = require('semver'),
-    SemverCheckerForm = require('./semver-checker-form.jsx');
+    SemverCheckerForm = require('./semver-checker-form.jsx'),
+    SemverFeedback = require('./semver-feedback.jsx');
 
 var SemverChecker = React.createClass({
     getInitialState: function() {
@@ -11,18 +12,10 @@ var SemverChecker = React.createClass({
     },
 
     handleSemverCheck: function(semverData) {
-
-        if (semver.satisfies(semverData.version, semverData.constraint)) {
-            this.setState({
-                satisfies: true,
-                feedback: semverData.version + " version satisfies " + semverData.constraint
-            });
-        } else {
-            this.setState({
-                satisfies: false,
-                feedback: semverData.version + " version doesn't satisfie " + semverData.constraint
-            });
-        }
+        this.setState({
+            satisfies: semver.satisfies(semverData.version, semverData.constraint),
+            data: semverData
+        });
     },
 
     handleSemverValidate: function(semverData) {
@@ -32,13 +25,12 @@ var SemverChecker = React.createClass({
     render: function() {
         return (
             <div>
-                <SemverCheckerForm onSemverCheck={this.handleSemverCheck} onSemverValidate={this.handleSemverValidate} />
+                <SemverCheckerForm onSemverCheck={ this.handleSemverCheck } onSemverValidate={ this.handleSemverValidate } />
 
-                <div className={ 'well' + (this.state.satisfies === false ? ' error' : '') }>{ this.state.feedback }</div>
+                <SemverFeedback satisfies={ this.state.satisfies } data={ this.state.data } />
             </div>
         );
     }
 });
-
 
 module.exports = SemverChecker;
