@@ -11,6 +11,9 @@
 @redColor: #D60000;
 @lightRedColor: fadeout(@redColor, 70%);
 
+@greenColor: #6BD600;
+@lightGreenColor: fadeout(@greenColor, 70%);
+
 body {
   padding: 0;
   margin: 0;
@@ -120,5 +123,9 @@ input {
 
   &.error {
     background-color: @lightRedColor;
+  }
+
+  &.success {
+    background-color: @lightGreenColor;
   }
 }

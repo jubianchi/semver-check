@@ -7,19 +7,21 @@ var SemverChecker = React.createClass({
     getInitialState: function() {
         return {
             satisfies: null,
-            feedback: 'Enter a constraint and a version number to check if it matches.'
+            version: null,
+            constraint: null
         };
     },
 
-    handleSemverCheck: function(semverData) {
+    handleSemverCheck: function(version, constraint) {
         this.setState({
-            satisfies: semver.satisfies(semverData.version, semverData.constraint),
-            data: semverData
+            satisfies: semver.satisfies(version, constraint),
+            version: version,
+            constraint: constraint,
         });
     },
 
-    handleSemverValidate: function(semverData) {
-        return semver.valid(semverData.version);
+    handleSemverValidate: function(version) {
+        return semver.valid(version);
     },
 
     render: function() {
@@ -27,7 +29,7 @@ var SemverChecker = React.createClass({
             <div>
                 <SemverCheckerForm onSemverCheck={ this.handleSemverCheck } onSemverValidate={ this.handleSemverValidate } />
 
-                <SemverFeedback satisfies={ this.state.satisfies } data={ this.state.data } />
+                <SemverFeedback satisfies={ this.state.satisfies } version={ this.state.version } constraint={ this.state.constraint } />
             </div>
         );
     }
