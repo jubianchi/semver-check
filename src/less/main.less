@@ -1,5 +1,15 @@
 @borderRadius: 0.2em;
 @elementPadding: 0.5em;
+@elementMargin: 2em;
+
+@blackColor: #333;
+@lightBlackColor: fadeout(@blackColor, 70%);
+
+@grayColor: #CFCFCF;
+@lightGrayColor: fadeout(@grayColor, 70%);
+
+@redColor: #D60000;
+@lightRedColor: fadeout(@redColor, 70%);
 
 body {
   padding: 0;
@@ -7,6 +17,16 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-size: 15px;
   text-align: center;
+  color: @blackColor;
+}
+
+a, a:visited {
+  color: @blackColor;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 #content {
@@ -15,9 +35,9 @@ body {
 
 .avatars {
   text-align: center;
-  background-color: fadeout(#CFCFCF, 70%);
+  background-color: @lightGrayColor;
   padding: @elementPadding 0;
-  margin: 2em 0 0 0;
+  margin: @elementMargin 0 0 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -38,11 +58,12 @@ body {
       }
 
       img {
-        width: 100px;
+        height: 100px;
         border-radius: 50%;
-        margin-bottom: 10px;
+        margin-bottom: @elementMargin;
         display: block;
         border: 5px solid black;
+        background-color: #fff;
       }
     }
   }
@@ -51,24 +72,53 @@ body {
 input {
   font-size: 1.5em;
   padding: @elementPadding;
-  border: 1px solid #CFCFCF;
+  border: 1px solid @grayColor;
+  border-right: none;
+  border-left: none;
+  width: 10em;
+
+  -webkit-appearance: none;
+  outline: none;
 
   &:first-of-type {
-    border-right: none;
+    border-left: 1px solid @grayColor;
     border-radius: @borderRadius 0 0 @borderRadius;
   }
 
   &:last-of-type {
-    border-left: none;
+    border-right: 1px solid @grayColor;
     border-radius: 0 @borderRadius @borderRadius 0;
   }
 
   & + input {
-    border-right: none;
+    border-left: 1px solid @grayColor;
     border-radius: 0;
   }
 
   &.error {
-    color: #D60000;
+    color: @redColor;
+  }
+
+  &[type=submit] {
+    background-color: @lightGrayColor;
+  }
+}
+
+.semverCheckerForm {
+  margin-bottom: @elementMargin;
+}
+
+.well {
+  width: 30em + (@elementPadding * 4);
+  margin: 0 auto;
+  padding: @elementPadding;
+  background-color: @lightGrayColor;
+
+  &:empty {
+    display: none;
+  }
+
+  &.error {
+    background-color: @lightRedColor;
   }
 }
