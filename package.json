@@ -17,6 +17,7 @@
     "reactify": "^0.15.2",
     "browserify": "^6.2.0",
     "gulp-less": "^1.3.6",
-    "gulp-autoprefixer": "^1.0.1"
+    "gulp-autoprefixer": "^1.0.1",
+    "gulp-ga": "0.0.1"
   }
 }
