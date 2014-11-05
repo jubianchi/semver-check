@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "A dummy webapp to check your semver compat",
   "main": "src/main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jubianchi/semver-check"
+  },
   "license": "ISC",
   "devDependencies": {
     "react": "^0.12.0",
