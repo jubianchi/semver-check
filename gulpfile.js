@@ -64,7 +64,8 @@ gulp.task('test', function() {
         .pipe(jest({
             scriptPreprocessor: 'preprocessor.js',
             unmockedModulePathPatterns: [
-                './node_modules/react'
+                './node_modules/react',
+                './node_modules/semver'
             ],
             moduleFileExtensions: [
                 "js"

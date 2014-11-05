@@ -67,8 +67,19 @@ var If = React.createClass({
 
                     var parts = explain.constraint.value.split(' - ');
                     lower = this.padVersion(parts[0], '0');
-                    upper = this.padVersion(parts[1], '0');
-                    inclusive = true;
+
+                    if (parts[1].split('.').length === 1) {
+                        upper = semver.inc(this.padVersion(parts[1], '0'), 'major');
+                    }
+
+                    if (parts[1].split('.').length === 2) {
+                        upper = semver.inc(this.padVersion(parts[1], '0'), 'minor');
+                    }
+
+                    if (parts[1].split('.').length === 3) {
+                        upper = parts[1];
+                        inclusive = true;
+                    }
                     break;
 
                 case explain.constraint.value.indexOf('~') === 0:
@@ -149,35 +160,33 @@ var If = React.createClass({
                     });
 
                     if (explain.constraint.parts[0] === '*') {
-                        explain.constraint.translated = '>=0.0.0';
+                        lower = '0.0.0';
                         explain.constraint.warning = true;
                         explain.constraint.include.major = true;
                         explain.constraint.include.minor = true;
                     } else {
+                        lower = this.padVersion(explain.constraint.parts.join('.').replace('*', '0'), 0);
+
                         if (explain.constraint.parts[1] === '*') {
                             upper = explain.version.next.major;
                             explain.constraint.include.minor = true;
                         } else {
-                            upper = explain.version.next.minor;
+                            if (explain.constraint.parts.length === 1) {
+                                upper = semver.inc(this.padVersion(lower, '0'), 'major');
+                            } else {
+                                upper = semver.inc(this.padVersion(lower, '0'), 'minor');
+                            }
                         }
 
-                        lower = this.padVersion(explain.constraint.parts.join('.').replace('*', '0'), 0);
+                        semver.inc(this.padVersion(lower, '0'), 'major');
                     }
 
                     explain.constraint.include.patch = true;
                     break;
             }
 
-            if (explain.constraint.type !== 'version') {
-                if (lower) {
-                    explain.constraint.translated = '>=' + lower;
-                }
-
-                if (!upper) {
-                    explain.constraint.warning = true;
-                } else {
-                    explain.constraint.translated += (explain.constraint.translated ? ' ' : '') + (inclusive ? '<=' : '<') + upper;
-                }
+            if (explain.constraint.type !== 'version' && !upper) {
+                explain.constraint.warning = true;
             }
 
             return (
@@ -186,8 +195,10 @@ var If = React.createClass({
                         <code>{ this.props.constraint }</code> is a <strong>{ explain.constraint.type }</strong> constraint.
                         It means that it will match <strong>{ explain.constraint.type !== 'version' ? 'several versions' : 'a single version' }</strong>.
                     </p>
-                    <If test={ explain.constraint.translated }>
-                        <p>In fact, the current constraint will be satisfied by any version matching <code>{ explain.constraint.translated }</code></p>
+                    <If test={ explain.constraint.type !== 'version' }>
+                        <p>
+                            In fact, the current constraint will be satisfied by any version matching <If test={ lower }><code>&gt;={ lower }</code></If>{ lower && upper ? ' ' : '' }<If test={ upper }><code>&lt;{ inclusive ? '=' : ''}{ upper }</code></If>.
+                        </p>
                     </If>
                     <If test={ explain.constraint.warning }>
                         <p>This range <strong>does not provide an upper bound</strong> which means you will probably get <strong>unexpected BC break</strong>.</p>
