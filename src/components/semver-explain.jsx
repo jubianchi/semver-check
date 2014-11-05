@@ -21,116 +21,163 @@ var If = React.createClass({
             return version.join('.');
         },
         render: function() {
-            if (!this.props.explain) {
+            if (!this.props.version || !this.props.constraint) {
                 return false;
             }
 
-            var explain = {
+            var cleaned = this.props.constraint.replace(/^(\^|~|<|>)/, ''),
+                padded = this.padVersion(cleaned, '0'),
+                explain = {
                     constraint: {
                         type: 'version',
                         translated: null,
                         warning: false,
-                        value: this.props.constraint
+                        value: this.props.constraint,
+                        parts: cleaned.split('.'),
+                        include: {
+                            major: false,
+                            minor: false,
+                            patch: false
+                        },
+                        next: {
+                            major: semver.inc(padded, 'major'),
+                            minor: semver.inc(padded, 'minor'),
+                            patch: semver.inc(padded, 'patch')
+                        }
+                    },
+                    version: {
+                        parts: this.props.version.split('.'),
+                        next: {
+                            major: semver.inc(this.props.version, 'major'),
+                            minor: semver.inc(this.props.version, 'minor'),
+                            patch: semver.inc(this.props.version, 'patch')
+                        }
                     }
                 },
-                matches = explain.constraint.value.match(/(\d+)(\.(\d+))?(\.(\d+))?/),
-                major = false,
-                minor = false,
-                patch = false,
+                inclusive = false,
                 lower, upper;
 
             switch (true) {
+                case explain.constraint.value.indexOf('||') > -1:
+                    explain.constraint.type = 'range (advanced)';
+                    break;
+
+                case explain.constraint.value.indexOf(' - ') > -1:
+                    explain.constraint.type = 'range (hyphen)';
+
+                    var parts = explain.constraint.value.split(' - ');
+                    lower = this.padVersion(parts[0], '0');
+                    upper = this.padVersion(parts[1], '0');
+                    inclusive = true;
+                    break;
+
                 case explain.constraint.value.indexOf('~') === 0:
                     explain.constraint.type = 'range (tilde)';
+                    lower = this.padVersion(explain.constraint.value.replace(/^~\s*/, ''), '0');
 
-                    if (matches[5] === undefined) {
-                        if (matches[3] === undefined) {
-                            upper = (parseInt(matches[1], 10) + 1) + '.0.0';
-                            minor = semver.inc(this.props.version, 'minor');
-                            patch = semver.inc(this.props.version, 'patch');
-                        } else {
-                            upper = matches[1] + '.' + (parseInt(matches[3], 10) + 1) + '.0';
-                            patch = semver.inc(this.props.version, 'patch');
-                        }
+                    if (explain.constraint.parts.length === 1) {
+                        upper = explain.constraint.next.major;
+                        explain.constraint.include.minor = true;
+                        explain.constraint.include.patch = true;
                     } else {
-                        upper = matches[1] + '.' + (parseInt(matches[3], 10) + 1) + '.0';
-                        patch = semver.inc(this.props.version, 'patch');
+                        upper = explain.constraint.next.minor;
+                        explain.constraint.include.patch = true;
                     }
-
-                    explain.constraint.value = '~' + this.padVersion(explain.constraint.value.replace(/^~\s*/, ''), '0');
-                    explain.constraint.translated = ' >=' + explain.constraint.value.replace('~', '') + ' <' + upper;
                     break;
 
                 case explain.constraint.value.indexOf('^') === 0:
                     explain.constraint.type = 'range (caret)';
-                    explain.constraint.value = '^' + this.padVersion(explain.constraint.value.replace(/^\^\s*/, ''), '0');
+                    lower = explain.constraint.value.replace(/^\^\s*/, '').replace(/\.(x|X)/, '');
+                    explain.constraint.parts = lower.split('.');
 
-                    if (matches[1] === '0') {
-                        if (matches[3] === '0') {
-                            upper = matches[1] + '.' + matches[3] + '.' + (parseInt(matches[5], 10) + 1);
+                    if (explain.constraint.parts[0] === '0') {
+                        if (explain.constraint.parts.length > 1) {
+                            if (explain.constraint.parts[1] !== '0') {
+                                upper = semver.inc(this.padVersion(lower, '0'), 'minor');
+                            } else {
+                                if (explain.constraint.parts.length === 1) {
+                                    upper = semver.inc(this.padVersion(lower, '0'), 'major');
+                                    explain.constraint.include.minor = true;
+                                }
+
+                                if (explain.constraint.parts.length === 2) {
+                                    upper = semver.inc(this.padVersion(lower, '0'), 'minor');
+                                }
+
+                                if (explain.constraint.parts.length === 3) {
+                                    upper = explain.constraint.next.patch;
+                                }
+                            }
                         } else {
-                            upper = matches[1] + '.' + (parseInt(matches[3], 10) + 1) + '.0';
+                            upper = semver.inc(this.padVersion(lower, '0'), 'major');
+                            explain.constraint.include.minor = true;
                         }
                     } else {
-                        upper = (parseInt(matches[1], 10) + 1) + '.0.0';
+                        upper = semver.inc(this.padVersion(lower, '0'), 'major');
+                        explain.constraint.include.minor = true;
                     }
 
-                    console.log(explain.constraint.value);
-                    explain.constraint.translated = ' >=' + explain.constraint.value.replace('^', '') + ' <' + upper;
+                    explain.constraint.include.patch = true;
+                    lower = this.padVersion(lower, '0');
                     break;
 
                 case explain.constraint.value.indexOf('>') === 0:
                     explain.constraint.type = 'range';
+                    lower = this.padVersion(explain.constraint.value.replace(/^>\s*/, ''), '0');
 
-                    if (matches[3] === undefined) {
-                        lower = (parseInt(matches[1], 10) + 1) + '.0.0';
+                    if (explain.constraint.parts.length < 2) {
+                        lower = explain.constraint.next.major;
                     } else {
-                        if (matches[5] === undefined) {
-                            lower = matches[3] + '.' + (parseInt(matches[3], 10) + 1);
+                        if (explain.constraint.parts.length < 3) {
+                            lower = explain.constraint.next.minor;
                         } else {
-                            lower = matches[1] + '.' + matches[3] + '.' + (parseInt(matches[5], 10) + 1);
+                            lower = explain.constraint.next.patch;
                         }
-                    }
-
-                    explain.constraint.value = '>' + this.padVersion(explain.constraint.value.replace(/^>\s*/, ''), '0');
-                    explain.constraint.translated = '>=' + lower;
-
-                    if (explain.constraint.value.indexOf('<') === -1) {
-                        explain.constraint.warning = true;
                     }
                     break;
 
                 case explain.constraint.value.indexOf('<') === 0:
                     explain.constraint.type = 'range';
-                    explain.constraint.value = '<' + this.padVersion(explain.constraint.value.replace(/^<\s*/, ''), '0');
-                    explain.constraint.translated = '>=0.0.0 ' + explain.constraint.value;
+                    upper = this.padVersion(explain.constraint.value.replace(/^<\s*/, ''), '0');
+                    lower = '0.0.0';
                     break;
 
-                case (!!explain.constraint.value.match(/(\*|x|X)$/) || explain.constraint.value.split('.').length < 3):
+                case (!!explain.constraint.value.match(/(\*|x|X)$/) || explain.constraint.parts.length < 3):
                     explain.constraint.type = 'wildcard';
-                    explain.constraint.value = this.padVersion(explain.constraint.value.replace(/(\*|x|X)$/, '*'), '*');
+                    explain.constraint.parts = explain.constraint.parts.map(function(part) {
+                        return part.replace(/(x|X)$/, '*');
+                    });
 
-                    if (!matches) {
+                    if (explain.constraint.parts[0] === '*') {
                         explain.constraint.translated = '>=0.0.0';
                         explain.constraint.warning = true;
-                        major = semver.inc(this.props.version, 'major');
-                        minor = semver.inc(this.props.version, 'minor');
-                        patch = semver.inc(this.props.version, 'patch');
+                        explain.constraint.include.major = true;
+                        explain.constraint.include.minor = true;
                     } else {
-                        if (matches[3] === undefined || matches[3] === '*') {
-                            upper = (parseInt(matches[1], 10) + 1) + '.0.0';
-                            minor = semver.inc(this.props.version, 'minor');
-                            patch = semver.inc(this.props.version, 'patch');
+                        if (explain.constraint.parts[1] === '*') {
+                            upper = explain.version.next.major;
+                            explain.constraint.include.minor = true;
                         } else {
-                            upper = matches[1] + '.' + (parseInt(matches[3], 10) + 1) + '.0';
-                            patch = semver.inc(this.props.version, 'patch');
+                            upper = explain.version.next.minor;
                         }
 
-                        lower = this.padVersion(this.props.constraint.replace('*', '0'), 0);
-
-                        explain.constraint.translated = '>=' + lower + ' <' + upper;
+                        lower = this.padVersion(explain.constraint.parts.join('.').replace('*', '0'), 0);
                     }
+
+                    explain.constraint.include.patch = true;
                     break;
+            }
+
+            if (explain.constraint.type !== 'version') {
+                if (lower) {
+                    explain.constraint.translated = '>=' + lower;
+                }
+
+                if (!upper) {
+                    explain.constraint.warning = true;
+                } else {
+                    explain.constraint.translated += (explain.constraint.translated ? ' ' : '') + (inclusive ? '<=' : '<') + upper;
+                }
             }
 
             return (
@@ -146,35 +193,29 @@ var If = React.createClass({
                         <p>This range <strong>does not provide an upper bound</strong> which means you will probably get <strong>unexpected BC break</strong>.</p>
                     </If>
 
-                    <If test={ major || minor || patch }>
+                    <If test={ explain.constraint.include.major || explain.constraint.include.minor || explain.constraint.include.patch }>
                         <div>
                             <p>Given the constraint you entered, you will get:</p>
                             <ul>
-                                <If test={ major }>
-                                    <li>The next <strong>major</strong> release which will probably <strong>break stuff</strong></li>
+                                <If test={ explain.constraint.include.major }>
+                                    <li>The next <strong>major</strong> releases which will probably <strong>break stuff</strong></li>
                                 </If>
-                                <If test={ minor }>
-                                    <li>The next <strong>minor</strong> release which will provide <strong>new features</strong></li>
+                                <If test={ explain.constraint.include.minor }>
+                                    <li>The next <strong>minor</strong> releases which will provide <strong>new features</strong></li>
                                 </If>
-                                <If test={ patch }>
-                                    <li>The next <strong>patch</strong> release which will <strong>fix bugs</strong></li>
-                                </If>
-                            </ul>
-
-                            <p>Given the version you entered:</p>
-                            <ul>
-                                <If test={ major }>
-                                    <li>The next <strong>major</strong> release will be <code>{ major }</code></li>
-                                </If>
-                                <If test={ minor }>
-                                    <li>The next <strong>minor</strong> release will be <code>{ minor }</code></li>
-                                </If>
-                                <If test={ patch }>
-                                    <li>The next <strong>patch</strong> release will be <code>{ patch }</code></li>
+                                <If test={ explain.constraint.include.patch }>
+                                    <li>The next <strong>patch</strong> releases which will <strong>fix bugs</strong></li>
                                 </If>
                             </ul>
                         </div>
                     </If>
+
+                    <p>Given the version you entered:</p>
+                    <ul>
+                        <li>The next <strong>major</strong> release will be <code>{ explain.version.next.major }</code></li>
+                        <li>The next <strong>minor</strong> release will be <code>{ explain.version.next.minor }</code></li>
+                        <li>The next <strong>patch</strong> release will be <code>{ explain.version.next.patch }</code></li>
+                    </ul>
                 </div>
             );
         }

@@ -18,19 +18,7 @@ var SemverChecker = React.createClass({
         this.setState({
             satisfies: !!semver.satisfies(version, constraint),
             version: version,
-            constraint: constraint,
-            explain: {
-                constraint: {
-                    cleaned: semver.clean(constraint)
-                },
-                version: {
-                    next: {
-                        major: semver.inc(version, 'major'),
-                        minor: semver.inc(version, 'minor'),
-                        patch: semver.inc(version, 'patch')
-                    }
-                }
-            }
+            constraint: constraint
         });
     },
 
@@ -45,7 +33,7 @@ var SemverChecker = React.createClass({
 
                 <SemverFeedback satisfies={ this.state.satisfies } version={ this.state.version } constraint={ this.state.constraint } />
 
-                <SemverExplain version={ this.state.version } constraint={ this.state.constraint } explain={ this.state.explain } />
+                <SemverExplain version={ this.state.version } constraint={ this.state.constraint } />
             </div>
         );
     }
