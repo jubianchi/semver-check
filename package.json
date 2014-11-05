@@ -8,6 +8,9 @@
     "url": "https://github.com/jubianchi/semver-check"
   },
   "license": "MIT",
+  "scripts": {
+    "test": "gulp test"
+  },
   "devDependencies": {
     "react": "^0.12.0",
     "semver": "^4.1.0",
