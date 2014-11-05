@@ -2,6 +2,7 @@ var browserify = require('browserify'),
     gulp = require('gulp'),
     less = require('gulp-less'),
     prefix = require('gulp-autoprefixer'),
+    ga = require('gulp-ga'),
     source = require("vinyl-source-stream"),
     reactify = require('reactify');
 
@@ -23,10 +24,21 @@ gulp.task('browserify-reactify', function() {
         .pipe(gulp.dest('./build/js'));
 });
 
-gulp.task('assets', function() {
+gulp.task('html', function() {
     gulp.src(paths.layout)
         .pipe(gulp.dest('./build'));
+});
 
+gulp.task('html:prod', function() {
+    gulp.src(paths.layout)
+        .pipe(ga({
+            url: 'jubianchi.github.io',
+            uid: 'UA-56445984-1'
+        }))
+        .pipe(gulp.dest('./build'));
+});
+
+gulp.task('assets', function() {
     gulp.src(paths.less)
         .pipe(less())
         .pipe(prefix({
@@ -46,7 +58,7 @@ gulp.task('watch', function() {
     gulp.watch(paths.js, ['browserify-reactify']);
 });
 
-gulp.task('prod', ['assets', 'browserify-reactify']);
-gulp.task('dev', ['watch', 'prod']);
+gulp.task('prod', ['html:prod', 'assets', 'browserify-reactify']);
+gulp.task('dev', ['html', 'watch', 'prod']);
 gulp.task('default', ['prod']);
 
