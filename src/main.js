@@ -3,7 +3,7 @@ var React = require('react'),
 
 var SemverChecker = require('./components/semver-checker.jsx');
 
-React.renderComponent(
+React.render(
     <SemverChecker />,
     document.getElementById('content')
 );
