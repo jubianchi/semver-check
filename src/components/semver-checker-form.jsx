@@ -18,8 +18,6 @@ var SemverCheckerForm = React.createClass({
         this.refs.version.getDOMNode().classList.remove('error');
 
         this.props.onSemverCheck(version, constraint);
-
-        return;
     },
 
     render: function() {

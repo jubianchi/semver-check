@@ -14,6 +14,20 @@
 @greenColor: #6BD600;
 @lightGreenColor: fadeout(@greenColor, 70%);
 
+@keyframes shake {
+  0% { transform: translate(2px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(0px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(2px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(2px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -28,8 +42,16 @@ a, a:visited {
   text-decoration: none;
 }
 
+a:active {
+  color: @lightBlackColor;
+}
+
 a:hover {
   text-decoration: underline;
+}
+
+form {
+  margin-bottom: @elementMargin;
 }
 
 #content {
@@ -40,11 +62,14 @@ a:hover {
   text-align: center;
   background-color: @lightGrayColor;
   padding: @elementPadding 0;
-  margin: @elementMargin 0 0 0;
   left: 0;
   right: 0;
   bottom: 0;
   position: absolute;
+
+  h3 {
+    margin-top: 0;
+  }
 
   ul {
     margin: 0;
@@ -56,14 +81,29 @@ a:hover {
       list-style-type: none;
       display: inline-block;
 
+      &:hover {
+        img {
+          animation-name: shake;
+          animation-duration: 0.8s;
+          transform-origin: 50% 50%;
+          animation-iteration-count: infinite;
+          animation-timing-function: linear;
+        }
+      }
+
       & + .avatar {
         margin-left: 50px;
       }
 
+      a {
+        display: block;
+      }
+
       img {
-        height: 100px;
+        width: 5em;
+        margin: 0 auto;
         border-radius: 50%;
-        margin-bottom: @elementMargin;
+        margin-bottom: @elementMargin / 2;
         display: block;
         border: 5px solid black;
         background-color: #fff;
@@ -107,10 +147,6 @@ input {
   }
 }
 
-.semverCheckerForm {
-  margin-bottom: @elementMargin;
-}
-
 .well {
   width: 30em + (@elementPadding * 4);
   margin: 0 auto;
@@ -127,5 +163,9 @@ input {
 
   &.success {
     background-color: @lightGreenColor;
+  }
+
+  ul, p {
+    text-align: left;
   }
 }
