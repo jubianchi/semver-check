@@ -3,6 +3,7 @@ var browserify = require('browserify'),
     less = require('gulp-less'),
     prefix = require('gulp-autoprefixer'),
     ga = require('gulp-ga'),
+    jest = require('gulp-jest'),
     source = require("vinyl-source-stream"),
     reactify = require('reactify');
 
@@ -58,7 +59,23 @@ gulp.task('watch', function() {
     gulp.watch(paths.js, ['browserify-reactify']);
 });
 
+gulp.task('test', function() {
+    gulp.src('.')
+        .pipe(jest({
+            scriptPreprocessor: 'preprocessor.js',
+            unmockedModulePathPatterns: [
+                './node_modules/react'
+            ],
+            moduleFileExtensions: [
+                "js"
+            ],
+            testDirectoryName: "tests"
+        }));
+});
+
 gulp.task('prod', ['html:prod', 'assets', 'browserify-reactify']);
 gulp.task('dev', ['html', 'watch', 'prod']);
 gulp.task('default', ['prod']);
+
+
 
