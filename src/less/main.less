@@ -40,11 +40,14 @@ a:hover {
   text-align: center;
   background-color: @lightGrayColor;
   padding: @elementPadding 0;
-  margin: @elementMargin 0 0 0;
   left: 0;
   right: 0;
   bottom: 0;
   position: absolute;
+
+  h3 {
+    margin-top: 0;
+  }
 
   ul {
     margin: 0;
@@ -61,9 +64,9 @@ a:hover {
       }
 
       img {
-        height: 100px;
+        height: 5em;
         border-radius: 50%;
-        margin-bottom: @elementMargin;
+        margin-bottom: @elementMargin / 2;
         display: block;
         border: 5px solid black;
         background-color: #fff;
@@ -127,5 +130,9 @@ input {
 
   &.success {
     background-color: @lightGreenColor;
+  }
+
+  ul, p {
+    text-align: left;
   }
 }
