@@ -5,7 +5,7 @@ var SemverFeedback = React.createClass({
             if (true === this.props.satisfies) {
                 return (
                     <div className="well success">
-                        <code>{ this.props.version }</code> satisfies contraint <code>{ this.props.constraint }</code>
+                        <code>{ this.props.version }</code> satisfies constraint <code>{ this.props.constraint }</code>
                     </div>
                 );
             }
@@ -13,7 +13,7 @@ var SemverFeedback = React.createClass({
             if (false === this.props.satisfies) {
                 return (
                     <div className="well error">
-                        <code>{ this.props.version }</code> does not satisfy contraint <code>{ this.props.constraint }</code>
+                        <code>{ this.props.version }</code> does not satisfy constraint <code>{ this.props.constraint }</code>
                     </div>
                 );
             }
