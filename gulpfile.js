@@ -12,7 +12,7 @@ var paths = {
     layout: ['./src/index.html'],
     less: ['./src/less/**/*.less'],
     images: ['./src/images/**/*.*'],
-    js: ['./src/main.js', './src/components/*.jsx']
+    js: ['./src/main.js', './src/components/*.jsx', './src/libs/*.js']
 };
 
 gulp.task('browserify-reactify', function() {

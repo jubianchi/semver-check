@@ -1,4 +1,5 @@
 jest.dontMock('../src/components/semver-explain.jsx');
+jest.dontMock('../src/libs/semver-constraint.js');
 
 describe('SemverExplain', function() {
     var React = require('react/addons');
