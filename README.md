@@ -6,8 +6,9 @@ Check it online here: [http://jubianchi.github.io/semver-check](http://jubianchi
 
 ## SemVer checker... Why?
 
-    In the world of software management there exists a dread place called "dependency hell."
-    The bigger your system grows and the more packages you integrate into your software, the more likely you are to find yourself, one day, in this pit of despair.
+> In the world of software management there exists a dread place called "dependency hell."
+
+> The bigger your system grows and the more packages you integrate into your software, the more likely you are to find yourself, one day, in this pit of despair.
 
 More and more projects try to follow [Semantic Versionning](http://semver.org/) to reduce package versionning nightmare and every dependancy manager implement its own semantic versionner.
 Composer and NPM for example don't handle version constraints the same way. It's hard sometimes to be sure how some library version will behave againts some constraint.
