@@ -1,4 +1,4 @@
-# Online SemVer Checker
+# Online SemVer Checker [![Build Status](https://travis-ci.org/jubianchi/semver-check.svg?branch=master)](https://travis-ci.org/jubianchi/semver-check)
 
 A basic web app coded with ReactJS to check a version against a SemVer constraint.
 
