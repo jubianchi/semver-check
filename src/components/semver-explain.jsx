@@ -4,8 +4,7 @@ var React = require('react'),
     SemverExplainConstraint = require('./semver-explain-constraint.jsx'),
     SemverExplainConstraintRange = require('./semver-explain-constraint-range.jsx'),
     SemverExplainConstraintWarning = require('./semver-explain-constraint-warning.jsx'),
-    SemverExplainConstraintIncludes = require('./semver-explain-constraint-includes.jsx'),
-    If = require('./semver-if.jsx');
+    SemverExplainConstraintIncludes = require('./semver-explain-constraint-includes.jsx');
 
 var SemverExplain = React.createClass({
     padVersion: function(version, padding) {
