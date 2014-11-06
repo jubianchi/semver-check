@@ -62,10 +62,11 @@ form {
   text-align: center;
   background-color: @lightGrayColor;
   padding: @elementPadding 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
+  width: 100%;
+
+  :nth-of-type(even) + & {
+    background-color: #fff;
+  }
 
   h3 {
     margin-top: 0;
@@ -167,6 +168,22 @@ input {
 
   ul, p {
     text-align: left;
+  }
+}
+
+.article {
+  width: 100%;
+  padding: @elementPadding @elementPadding * 4;
+  background-color: @lightGrayColor;
+  min-height: 100px;
+  text-align: left;
+
+  #content + & {
+    margin-top: @elementMargin;
+  }
+
+  &:nth-of-type(odd) {
+    background-color: #fff;
   }
 }
 
