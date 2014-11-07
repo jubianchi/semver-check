@@ -14,31 +14,115 @@
             <h2>SemVer checker... Why?</h2>
 
             <blockquote>
-                In the world of software management there exists a dread place called "dependency hell."
-                The bigger your system grows and the more packages you integrate into your software, the more likely you are to find yourself, one day, in this pit of despair.
+                <p>In the world of software management there exists a dread place called "dependency hell."</p>
+
+                <p>
+                    The bigger your system grows and the more packages you integrate into your software, the more likely
+                    you are to find yourself, one day, in this pit of despair.
+                </p>
+
+                <cite>&mdash; <a href="http://semver.org/">semver.org</a></cite>
             </blockquote>
 
-            <p>More and more projects try to follow Semantic Versionning to reduce package versionning nightmare and every dependancy manager implement its own semantic versionner. Composer and NPM for example don't handle version constraints the same way. It's hard sometimes to be sure how some library version will behave againts some constraint.</p>
+            <p>
+                More and more projects try to follow Semantic Versionning to reduce package versionning nightmare and
+                every dependency manager implement its own semantic versionner. Composer and NPM for example don't
+                handle version constraints the same way. It's hard sometimes to be sure how some library version will
+                behave against some constraint.
+            </p>
 
-            <p>This tiny webapp checks if a given version satifies another given constraint in the NPM world.</p>
+            <p>This tiny webapp checks if a given version satisfies another given constraint in the NPM world.</p>
 
-            <p>But to be honest, this project is also the opportunity to give a shot to ReactJS and its JSX components!</p>
+            <p>
+                But to be honest, this project is also the opportunity to give a shot to ReactJS and its JSX components!
             </p>
         </div>
         <div class="article">
             <h2>Semver constraint implementations</h2>
+
+            <p>
+                Semantic Versionning stands as a standard versionning scheme but it does not
+                (<a href="https://github.com/mojombo/semver/issues/113">yet</a>) cover dependency management and how to
+                express constraint.
+            </p>
+
+            <p>
+                Without any formal specification about constraint, dependency managers sometimes handle or express them
+                differently. For example, the caret-range constraint (<code>^x.y</code>) exists in the
+                <a href="https://www.npmjs.org/">NPM</a> implementation but not in <a href="https://getcomposer.org">composer</a>.
+                An other example is the tilde-range constraint (<code>~x.y</code>) which does not work the same way in
+                the two previous tools.
+            </p>
         </div>
         <div class="article">
             <h2>Why using strict constraint is bad?</h2>
 
+            <p>
+                Strict constraint (or fully qualified constraint) are those constraints matching only one version.
+                In most case it is a bad idea to use them.
+            </p>
+
+            <p>
+                Why? Because with them you are locking your dependency to a specific patch release which means you won't
+                ever get bug fixes when updating your dependencies.
+            </p>
+
+            <p>
+                Moreover, using strict constraint will make the work of some dependency managers harder: if you are
+                depending on a package and have a dependency in common, if both of you require this common dependency
+                strictly, your manager won't be able to choose an appropriate version, satisfying every
+                constraint.
+            </p>
+
+            <p>
+                Unless you know exactly what you are doing and why, you should change to a more flexible one like:
+            </p>
+
+            <ul>
+                <li><code>~x.y.z</code> if your dependency manager supports tilde-range constraints</li>
+                <li><code>&gt;=x.y.z &lt;x.(y+1).0</code> if your dependency manager support range constraints</li>
+            </ul>
+
+            <p>
+                Using such constraints, you will allow your dependency manager to pull patch releases letting you get
+                bug fixes. If the library you are depending on strictly implements Semantic Versionning you should be able to
+                make your constraint even more flexible by allowing your dependency manager to also pull new features:
+            </p>
+
+            <ul>
+                <li><code>^x.y.z</code> if your dependency manager supports caret-range constraints</li>
+                <li><code>&gt;=x.y.z &lt;(x+1).0.0</code> if your dependency manager support range constraints</li>
+            </ul>
         </div>
         <div class="article">
             <h2>Why using loose constraint is bad?</h2>
 
-        </div>
-        <div class="article">
-            <h2>How does SemVer checker works?</h2>
+            <p>
+                Loose constraint are those constraints matching any version greater than a given one. It is a very
+                bad idea to use them.
+            </p>
 
+            <p>
+                Why? Because with them you are only giving a lower bound to your dependency's version, which means
+                every version greater than the one you chose, be it a patch, minor or major release. If we read
+                Semantic Versionning carefully:
+            </p>
+
+            <blockquote>
+                <ol start="8">
+                    <li>Major version X (X.y.z | X > 0) MUST be incremented if any backwards incompatible changes are
+                    introduced to the public API. It MAY include minor and patch level changes. Patch and minor version
+                    MUST be reset to 0 when major version is incremented.</li>
+                </ol>
+
+                <cite>&mdash; <a href="http://semver.org/">semver.org</a></cite>
+            </blockquote>
+
+            <p>
+                What does this mean? It means that major releases <strong>may</strong> break backward compatibility. With a
+                loose constraint you will get those releases and the BC break they introduce. This is likely not what you
+                want!
+            </p>
         </div>
 
         <div class="avatars">

@@ -173,7 +173,7 @@ input {
 
 .article {
   width: 100%;
-  padding: @elementPadding @elementPadding * 4;
+  padding: @elementPadding 0;
   background-color: @lightGrayColor;
   min-height: 100px;
   text-align: left;
@@ -184,6 +184,33 @@ input {
 
   &:nth-of-type(odd) {
     background-color: #fff;
+
+    blockquote {
+      border-color: @lightGrayColor;
+    }
+  }
+
+  & > h2 {
+    text-transform: uppercase;
+    margin-left: 1em;
+    margin-top: 0.5em;
+  }
+
+  & > p {
+    padding: 0 @elementPadding * 4;
+  }
+
+  blockquote, ul {
+    padding-left: 10px;
+    margin-left: @elementPadding * 8;
+  }
+
+  blockquote {
+    border-left: 5px solid #fff;
+  }
+
+  p {
+    text-align: justify;
   }
 }
 
