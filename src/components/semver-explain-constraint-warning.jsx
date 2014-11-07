@@ -12,7 +12,7 @@ var SemverExplainConstraintWarning = React.createClass({
 
             return (
                 <div>
-                    <If test={ !this.props.constraint.upper() }>
+                    <If test={ !this.props.constraint.upper() && this.props.constraint.type() !== 'version' }>
                         <p>This constraint <strong>does not provide an upper bound</strong> which means you will probably get <strong>unexpected BC break</strong>.</p>
                     </If>
 

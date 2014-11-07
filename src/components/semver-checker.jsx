@@ -9,8 +9,7 @@ var SemverChecker = React.createClass({
         return {
             satisfies: null,
             version: null,
-            constraint: null,
-            explain: null
+            constraint: null
         };
     },
 
