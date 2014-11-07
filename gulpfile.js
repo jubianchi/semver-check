@@ -53,7 +53,7 @@ gulp.task('assets', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch(paths.layout, ['assets']);
+    gulp.watch(paths.layout, ['html']);
     gulp.watch(paths.less, ['assets']);
     gulp.watch(paths.images, ['assets']);
     gulp.watch(paths.js, ['browserify-reactify']);
