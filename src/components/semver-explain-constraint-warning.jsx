@@ -1,6 +1,6 @@
 var React = require('react'),
     SemverConstraint = require('../libs/semver-constraint.js'),
-    If = require('./semver-if.jsx')
+    If = require('./semver-if.jsx'),
     SemverRange = require('./semver-if.jsx');
 
 var SemverExplainConstraintWarning = React.createClass({
