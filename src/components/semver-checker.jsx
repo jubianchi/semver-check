@@ -28,11 +28,15 @@ var SemverChecker = React.createClass({
         return semver.valid(version);
     },
 
+    handleConstraintValidate: function(constraint) {
+        return semver.validRange(constraint);
+    },
+
     render: function() {
         return (
             <div>
                 <SemverCheckerForm resetState={ this.resetState } onSemverCheck={ this.handleSemverCheck } 
-                    onSemverValidate={ this.handleSemverValidate }  />
+                    onSemverValidate={ this.handleSemverValidate } onConstraintValidate={ this.handleConstraintValidate } />
 
                 <SemverFeedback satisfies={ this.state.satisfies } version={ this.state.version } constraint={ this.state.constraint } />
 
