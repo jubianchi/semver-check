@@ -12,6 +12,9 @@ var SemverChecker = React.createClass({
             constraint: null
         };
     },
+    resetState: function() {
+        this.setState(this.getInitialState());
+    },
 
     handleSemverCheck: function(version, constraint) {
         this.setState({
@@ -28,7 +31,8 @@ var SemverChecker = React.createClass({
     render: function() {
         return (
             <div>
-                <SemverCheckerForm onSemverCheck={ this.handleSemverCheck } onSemverValidate={ this.handleSemverValidate } />
+                <SemverCheckerForm resetState={ this.resetState } onSemverCheck={ this.handleSemverCheck } 
+                    onSemverValidate={ this.handleSemverValidate }  />
 
                 <SemverFeedback satisfies={ this.state.satisfies } version={ this.state.version } constraint={ this.state.constraint } />
 
