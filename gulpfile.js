@@ -5,7 +5,8 @@ var browserify = require('browserify'),
     ga = require('gulp-ga'),
     jest = require('gulp-jest'),
     source = require("vinyl-source-stream"),
-    reactify = require('reactify');
+    reactify = require('reactify'),
+    notify = require('gulp-notify');
 
 
 var paths = {
@@ -21,6 +22,10 @@ gulp.task('browserify-reactify', function() {
     b.add('./src/main.js');
 
     return b.bundle()
+        .on("error", notify.onError({
+            message: "Error: <%= error.message %>",
+            title: "Error during browserify"
+          }))
         .pipe(source('app.js'))
         .pipe(gulp.dest('./build/js'));
 });
