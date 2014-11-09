@@ -82,6 +82,3 @@ gulp.task('test', function() {
 gulp.task('prod', ['html:prod', 'assets', 'browserify-reactify']);
 gulp.task('dev', ['html', 'watch', 'prod']);
 gulp.task('default', ['prod']);
-
-
-

@@ -11,24 +11,25 @@ var SemverCheckerForm = React.createClass({
             return;
         }
 
-        if (this.props.onSemverValidate(version )) {
+        if (this.props.onSemverValidate(version)) {
             this.refs.version.getDOMNode().classList.remove('error');
         } else {
             this.refs.version.getDOMNode().classList.add('error');
             valid = false;
         }
 
-        if (this.props.onConstraintValidate(constraint )) {
+        if (this.props.onConstraintValidate(constraint)) {
             this.refs.constraint.getDOMNode().classList.remove('error');
         } else {
             this.refs.constraint.getDOMNode().classList.add('error');
             valid = false;
         }
 
-        if(!valid) {
+        if (!valid) {
             this.props.resetState();
             return;
         }
+
         this.props.onSemverCheck(version, constraint);
     },
 
