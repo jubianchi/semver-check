@@ -13,11 +13,11 @@ var SemverExplainConstraintWarning = React.createClass({
             return (
                 <div>
                     <If test={ !this.props.constraint.upper() && this.props.constraint.type() !== 'version' }>
-                        <p>This constraint <strong>does not provide an upper bound</strong> which means you will probably get <strong>unexpected BC break</strong>.</p>
+                        <p>This constraint <a href="#why-using-loose-constraint-is-bad">does not provide an upper bound</a> which means you will probably get <strong>unexpected BC break</strong>.</p>
                     </If>
 
                     <If test={ this.props.constraint.type() == 'version' }>
-                        <p>This constraint <strong>is too strict</strong> which means <strong>you won't even get bug fixes</strong>.</p>
+                        <p>This constraint <a href="#why-using-strict-constraint-is-bad">is too strict</a> which means <strong>you won't even get bug fixes</strong>.</p>
                     </If>
                 </div>
             );
