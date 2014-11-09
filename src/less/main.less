@@ -119,7 +119,7 @@ input {
   border: 1px solid @grayColor;
   border-right: none;
   border-left: none;
-  width: 10em;
+  width: 15em;
 
   -webkit-appearance: none;
   outline: none;
@@ -149,7 +149,7 @@ input {
 }
 
 .well {
-  width: 30em + (@elementPadding * 4);
+  width: 45em + (@elementPadding * 4);
   margin: 0 auto;
   padding: @elementPadding;
   background-color: @lightGrayColor;
@@ -223,4 +223,53 @@ input {
     top: 0;
     right: 0;
     border: 0;
+}
+
+@media screen and (max-width: 750px) {
+  input {
+    border-left: 1px solid @grayColor;
+    border-right: 1px solid @grayColor;
+    border-top: 1px solid @grayColor;
+    border-bottom: none;
+    display: block;
+    margin: 0 auto;
+    -webkit-appearance: none;
+    outline: none;
+    width: 15em;
+
+    &:first-of-type {
+      border-radius: @borderRadius @borderRadius 0 0;
+    }
+
+    &:last-of-type {
+      border-bottom: 1px solid @grayColor;
+      border-radius: 0 0 @borderRadius @borderRadius;
+    }
+
+    & + input {
+      border-left: 1px solid @grayColor;
+      border-radius: 0;
+    }
+
+    &.error {
+      color: @redColor;
+    }
+
+    &[type=submit] {
+      background-color: @lightGrayColor;
+    }
+  }
+
+  .well {
+    width: 22em + (@elementPadding * 2);
+  }
+
+  .avatar img {
+    width: 3em!important;
+    border: 2px solid black!important;
+  }
+
+  .avatar a span {
+    display: none;
+  }
 }
