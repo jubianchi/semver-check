@@ -13,7 +13,7 @@ var SemverExplainConstraintRange = React.createClass({
             var lower = (this.props.constraint.lower() ? this.props.constraint.lower().toString() : false),
                 upper = (this.props.constraint.upper() ? this.props.constraint.upper().toString() : false);
 
-            if (this.props.constraint.type() !== 'version') {
+            if (['version', 'range (advanced)'].indexOf(this.props.constraint.type()) === -1 && ['<', '<=', '>', '>='].indexOf(this.props.constraint.operator()) === -1) {
                 return (
                     <p>
                         In fact, the current constraint will be satisfied by any version matching <If test={ lower }><code>{ lower }</code></If>
