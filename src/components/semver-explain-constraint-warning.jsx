@@ -15,7 +15,7 @@ var SemverExplainConstraintWarning = React.createClass({
                 <div>
                     <If test={ this.props.constraint.type() == 'range (caret)' }>
                         <p>
-                            If you are using composer, you won't be able to use caret-range constraint. You should
+                            If you are using <a href="https://getcomposer.org">composer</a>, you won't be able to use caret-range constraint. You should
                             use something like <SemverRange lower={ this.props.constraint.lower() } upper={ this.props.constraint.upper() } />.
                         </p>
                     </If>

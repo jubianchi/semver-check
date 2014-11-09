@@ -16,7 +16,7 @@ var SemverExplainConstraintComposer = React.createClass({
 
             return (
                 <p>
-                    Composer handles tilde-range differently. Your constraint will translate to <SemverRange lower={ this.props.constraint.lower() } upper={ this.props.constraint.upper() } />.
+                    <a href="https://getcomposer.org">Composer</a> handles tilde-range differently. Your constraint will translate to <SemverRange lower={ this.props.constraint.lower() } upper={ this.props.constraint.upper() } />.
                 </p>
             );
         }
