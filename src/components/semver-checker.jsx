@@ -29,7 +29,7 @@ var SemverChecker = React.createClass({
     },
 
     handleConstraintValidate: function(constraint) {
-        return semver.validRange(constraint);
+        return '' === constraint ? false : semver.validRange(constraint);
     },
 
     render: function() {
