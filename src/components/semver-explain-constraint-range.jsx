@@ -1,5 +1,5 @@
 var React = require('react'),
-    If = require('./semver-if.jsx'),
+    SemverRange = require('./semver-range.jsx'),
     SemverConstraint = require('../libs/semver-constraint.js');
 
 var SemverExplainConstraintRange = React.createClass({
@@ -10,15 +10,10 @@ var SemverExplainConstraintRange = React.createClass({
 
             this.props.constraint = new SemverConstraint(this.props.constraint);
 
-            var lower = (this.props.constraint.lower() ? this.props.constraint.lower().toString() : false),
-                upper = (this.props.constraint.upper() ? this.props.constraint.upper().toString() : false);
-
             if (['version', 'range (advanced)'].indexOf(this.props.constraint.type()) === -1 && ['<', '<=', '>', '>='].indexOf(this.props.constraint.operator()) === -1) {
                 return (
                     <p>
-                        In fact, the current constraint will be satisfied by any version matching <If test={ lower }><code>{ lower }</code></If>
-                        { lower && upper ? ' ' : '' }
-                        <If test={ upper }><code>{ upper }</code></If>.
+                        In fact, the current constraint will be satisfied by any version matching <SemverRange lower={ this.props.constraint.lower() } upper={ this.props.constraint.upper() } />.
                     </p>
                 );
             }

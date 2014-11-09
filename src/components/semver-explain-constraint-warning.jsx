@@ -1,6 +1,7 @@
 var React = require('react'),
     SemverConstraint = require('../libs/semver-constraint.js'),
-    If = require('./semver-if.jsx');
+    If = require('./semver-if.jsx')
+    SemverRange = require('./semver-if.jsx');
 
 var SemverExplainConstraintWarning = React.createClass({
         render: function() {
@@ -10,15 +11,12 @@ var SemverExplainConstraintWarning = React.createClass({
 
             this.props.constraint = new SemverConstraint(this.props.constraint);
 
-            var lower = (this.props.constraint.lower() ? this.props.constraint.lower().toString() : false),
-                upper = (this.props.constraint.upper() ? this.props.constraint.upper().toString() : false);
-
             return (
                 <div>
                     <If test={ this.props.constraint.type() == 'range (caret)' }>
                         <p>
                             If you are using composer, you won't be able to use caret-range constraint. You should
-                            use something like<If test={ lower }><code>{ lower }</code></If>{ lower && upper ? ' ' : '' }<If test={ upper }><code>{ upper }</code></If>.
+                            use something like <SemverRange lower={ this.props.constraint.lower() } upper={ this.props.constraint.upper() } />.
                         </p>
                     </If>
 

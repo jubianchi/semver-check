@@ -1,5 +1,5 @@
 var React = require('react'),
-    If = require('./semver-if.jsx'),
+    SemverRange = require('./semver-range.jsx'),
     SemverComposerConstraint = require('../libs/semver-composer-constraint.js');
 
 var SemverExplainConstraintComposer = React.createClass({
@@ -14,14 +14,9 @@ var SemverExplainConstraintComposer = React.createClass({
                 return false;
             }
 
-            var lower = (this.props.constraint.lower() ? this.props.constraint.lower().toString() : false),
-                upper = (this.props.constraint.upper() ? this.props.constraint.upper().toString() : false);
-
             return (
                 <p>
-                    Composer handles tilde-range differently. Your constraint will translate to <If test={ lower }><code>{ lower }</code></If>
-                    { lower && upper ? ' ' : '' }
-                    <If test={ upper }><code>{ upper }</code></If>.
+                    Composer handles tilde-range differently. Your constraint will translate to <SemverRange lower={ this.props.constraint.lower() } upper={ this.props.constraint.upper() } />.
                 </p>
             );
         }
