@@ -9,8 +9,10 @@ var semver = require('semver'),
         return version.join('.');
     },
     SemverConstraint = function SemverConstraint(value) {
-        this.constraint = value;
-        this.desugared = this.constraint.replace(/(x|X)/, '*');
+        if (value) {
+            this.constraint = value;
+            this.desugared = this.constraint.replace(/(x|X)/, '*');
+        }
     };
 
 SemverConstraint.prototype = {
