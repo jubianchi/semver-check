@@ -12,6 +12,13 @@ var SemverExplainConstraintWarning = React.createClass({
 
             return (
                 <div>
+                    <If test={ this.props.constraint.type() == 'range (caret)' }>
+                        <p>
+                            If you are using composer, you won't be able to use caret-range constraint. You should
+                            use something like <code>{ this.props.constraint.lower().toString() } { this.props.constraint.upper().toString() }</code>.
+                        </p>
+                    </If>
+
                     <If test={ !this.props.constraint.upper() && ['version', 'range (advanced)'].indexOf(this.props.constraint.type()) === -1 && ['<', '<='].indexOf(this.props.constraint.operator()) === -1 }>
                         <p>This constraint <a href="#why-using-loose-constraint-is-bad">does not provide an upper bound</a> which means you will probably get <strong>unexpected BC break</strong>.</p>
                     </If>
