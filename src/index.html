@@ -26,15 +26,15 @@
 
             <p>
                 More and more projects try to follow Semantic Versionning to reduce package versionning nightmare and
-                every dependency manager implement its own semantic versionner. Composer and NPM for example don't
+                every dependency manager implement its own semantic versionner. <a href="https://getcomposer.org/">Composer</a> and <a href="https://www.npmjs.org/">NPM</a> for example don't
                 handle version constraints the same way. It's hard sometimes to be sure how some library version will
                 behave against some constraint.
             </p>
 
-            <p>This tiny webapp checks if a given version satisfies another given constraint in the NPM world.</p>
+            <p>This tiny webapp checks if a given version satisfies another given constraint in the <a href="https://www.npmjs.org/">NPM</a> world.</p>
 
             <p>
-                But to be honest, this project is also the opportunity to give a shot to ReactJS and its JSX components!
+                But to be honest, this project is also the opportunity to give a shot to <a href="http://facebook.github.io/react/">ReactJS</a> and its <a href="http://facebook.github.io/jsx/">JSX</a> components!
             </p>
         </div>
         <div class="article" id="semver-constraint-implementations">
@@ -49,10 +49,16 @@
             <p>
                 Without any formal specification about constraint, dependency managers sometimes handle or express them
                 differently. For example, the caret-range constraint (<code>^x.y</code>) exists in the
-                <a href="https://www.npmjs.org/">NPM</a> implementation but not in <a href="https://getcomposer.org">composer</a>.
+                <a href="https://www.npmjs.org/">NPM</a> implementation but not in <a href="https://getcomposer.org">Composer</a>.
                 An other example is the tilde-range constraint (<code>~x.y</code>) which does not work the same way in
                 the two previous tools.
             </p>
+
+            <ul>
+                <li>See how <a href="https://www.npmjs.org/">NPM</a> handles constraints: <a href="https://github.com/npm/node-semver">npm/node-semver</a></a></li>
+                <li>See how <a href="https://getcomposer.org/">Composer</a> handles constraints: <a href="https://getcomposer.org/doc/01-basic-usage.md#package-versions">Package Versions</a></a></li>
+                <li>See how <a href="http://bundler.io/">Bundler</a> handles constraints: <a href="http://guides.rubygems.org/patterns/#pessimistic-version-constraint">Pessimistic version constraint</a></a></li>
+            </ul>
         </div>
         <div class="article" id="why-using-strict-constraint-is-bad">
             <h2>Why using strict constraint is bad?</h2>
