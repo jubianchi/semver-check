@@ -25,7 +25,9 @@ var SemverCheckerForm = React.createClass({
             this.props.setConstraint(constraint);
         } else {
             this.refs.constraint.getDOMNode().classList.add('error');
-            this.props.setConstraint(null);
+            if (!constraint) {
+                this.props.setConstraint(null);
+            }
             valid = false;
         }
 
