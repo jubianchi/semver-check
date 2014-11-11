@@ -18,7 +18,7 @@ var SemverExplain = React.createClass({
         return version.join('.');
     },
     render: function() {
-        if (!this.props.version || !this.props.constraint) {
+        if (!this.props.version && !this.props.constraint) {
             return false;
         }
 
