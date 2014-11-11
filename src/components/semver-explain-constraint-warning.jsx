@@ -27,6 +27,10 @@ var SemverExplainConstraintWarning = React.createClass({
                     <If test={ this.props.constraint.type() == 'version' }>
                         <p>This constraint <a href="#why-using-strict-constraint-is-bad">is too strict</a> which means <strong>you won't even get bug fixes</strong>.</p>
                     </If>
+
+                    <If test={ this.props.constraint.type() != 'version' && this.props.constraint.parts()[0] == '0' }>
+                        <p>When locking on <strong>unstable releases</strong> (<code>0.x.y</code>) you should use a <strong>strict constraint</strong>. As said by <a href="http://semver.org">semver</a> (4), these releases may break anything at any time.</p>
+                    </If>
                 </div>
             );
         }
