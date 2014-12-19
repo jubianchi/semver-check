@@ -208,11 +208,9 @@ SemverConstraint.prototype = {
                 if (this.parts()[0] !== '*') {
                     if (this.parts()[1] === '*') {
                         upper = semver.inc(padVersion(this.lower().cleaned(), '0'), 'major');
-                        //explain.constraint.include.minor = true;
                     } else {
                         if (this.parts().length === 1) {
                             upper = semver.inc(padVersion(this.lower().cleaned(), '0'), 'major');
-                            //explain.constraint.include.minor = true;
                         } else {
                             upper = semver.inc(padVersion(this.lower().cleaned(), '0'), 'minor');
                         }
