@@ -1,4 +1,12 @@
 jest.dontMock('../src/components/semver-explain.jsx');
+jest.dontMock('../src/components/semver-explain-version.jsx');
+jest.dontMock('../src/components/semver-explain-constraint.jsx');
+jest.dontMock('../src/components/semver-explain-constraint-range.jsx');
+jest.dontMock('../src/components/semver-explain-constraint-composer.jsx');
+jest.dontMock('../src/components/semver-explain-constraint-warning.jsx');
+jest.dontMock('../src/components/semver-explain-constraint-includes.jsx');
+jest.dontMock('../src/components/semver-if.jsx');
+jest.dontMock('../src/components/semver-range.jsx');
 jest.dontMock('../src/libs/semver-constraint.js');
 
 describe('SemverExplain', function() {

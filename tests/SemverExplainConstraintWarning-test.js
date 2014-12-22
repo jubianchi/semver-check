@@ -1,4 +1,5 @@
 jest.dontMock('../src/components/semver-explain-constraint-warning.jsx');
+jest.dontMock('../src/components/semver-if.jsx');
 jest.dontMock('../src/libs/semver-constraint.js');
 
 describe('SemverExplainConstraintWarning', function() {
