@@ -46,12 +46,16 @@ SemverConstraint.prototype = {
         return parts;
     },
 
-    cleaned: function() {
+    cleaned: function(prerelease) {
         var cleaned = this.desugared.replace(/^(\^|~|<=?|>=?)\s*/, '').replace(/\.\*/, '');
 
         this.cleaned = function() {
             return cleaned;
         };
+
+        if (prerelease === false) {
+            cleaned = cleaned.split('-').slice(0, 1).join('-');
+        }
 
         return cleaned;
     },
@@ -168,7 +172,11 @@ SemverConstraint.prototype = {
                 if (this.parts().length === 1) {
                     upper = semver.inc(padVersion(this.cleaned(), '0'), 'major');
                 } else {
-                    upper = semver.inc(padVersion(this.cleaned(), '0'), 'minor');
+                    if (this.parts()[1] === "0" && this.parts()[2].match(/^0-/)) {
+                        upper = semver.inc(padVersion(this.lower().cleaned(false), '0'), 'minor');
+                    } else {
+                        upper = semver.inc(padVersion(this.cleaned(), '0'), 'minor');
+                    }
                 }
                 break;
 
@@ -194,7 +202,11 @@ SemverConstraint.prototype = {
                         upper = semver.inc(padVersion(this.lower().cleaned(), '0'), 'major');
                     }
                 } else {
-                    upper = semver.inc(padVersion(this.lower().cleaned(), '0'), 'major');
+                    if (this.parts()[1] === "0" && this.parts()[2].match(/^0-/)) {
+                        upper = semver.inc(padVersion(this.lower().cleaned(false), '0'), 'major');
+                    } else {
+                        upper = semver.inc(padVersion(this.lower().cleaned(), '0'), 'major');
+                    }
                 }
                 break;
 
