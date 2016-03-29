@@ -25,8 +25,8 @@
             </blockquote>
 
             <p>
-                More and more projects try to follow Semantic Versionning to reduce package versionning nightmare and
-                every dependency manager implement its own semantic versionner. <a href="https://getcomposer.org/">Composer</a> and <a href="https://www.npmjs.org/">NPM</a> for example don't
+                More and more projects try to follow Semantic Versioning to reduce package versioning nightmare and
+                every dependency manager implements its own semantic versioner. <a href="https://getcomposer.org/">Composer</a> and <a href="https://www.npmjs.org/">NPM</a> for example don't
                 handle version constraints the same way. It's hard sometimes to be sure how some library version will
                 behave against some constraint.
             </p>
@@ -41,7 +41,7 @@
             <h2>Semver constraint implementations</h2>
 
             <p>
-                Semantic Versionning stands as a standard versionning scheme but it does not
+                Semantic Versioning stands as a standard versioning scheme but it does not
                 (<a href="https://github.com/mojombo/semver/issues/113">yet</a>) cover dependency management and how to
                 express constraint.
             </p>
@@ -89,7 +89,7 @@
 
             <p>
                 Using such constraints, you will allow your dependency manager to pull patch releases letting you get
-                bug fixes. If the library you are depending on strictly implements Semantic Versionning you should be able to
+                bug fixes. If the library you are depending on strictly implements Semantic Versioning you should be able to
                 make your constraint even more flexible by allowing your dependency manager to also pull new features:
             </p>
 
@@ -109,7 +109,7 @@
             <p>
                 Why? Because with them you are only giving a lower bound to your dependency's version, which means
                 every version greater than the one you chose, be it a patch, minor or major release. If we read
-                Semantic Versionning carefully:
+                Semantic Versioning carefully:
             </p>
 
             <blockquote>
