@@ -9,6 +9,7 @@ describe('SemverConstraint', function() {
         expect(new SemverConstraint('~1.0.0').operator()).toEqual('~');
         expect(new SemverConstraint('>1.0.0').operator()).toEqual('>');
         expect(new SemverConstraint('<1.0.0').operator()).toEqual('<');
+        expect(new SemverConstraint('~>1.0.0').operator()).toEqual('~>');
     });
 
     it('should compute constraint parts', function() {
@@ -17,6 +18,7 @@ describe('SemverConstraint', function() {
         expect(new SemverConstraint('~1.0.0').parts()).toEqual(['1', '0', '0']);
         expect(new SemverConstraint('>1.0.0').parts()).toEqual(['1', '0', '0']);
         expect(new SemverConstraint('<1.0.0').parts()).toEqual(['1', '0', '0']);
+        expect(new SemverConstraint('~>1.0.0').parts()).toEqual(['1', '0', '0']);
     });
 
     it('should compute cleaned version', function() {
@@ -25,6 +27,7 @@ describe('SemverConstraint', function() {
         expect(new SemverConstraint('~  1.0.0').cleaned()).toEqual('1.0.0');
         expect(new SemverConstraint('>1.0.0').cleaned()).toEqual('1.0.0');
         expect(new SemverConstraint('<1.0.0').cleaned()).toEqual('1.0.0');
+        expect(new SemverConstraint('~>  1.0.0').parts()).toEqual(['1', '0', '0']);
     });
 
     it('should compute constraint type', function() {
@@ -34,12 +37,14 @@ describe('SemverConstraint', function() {
         expect(new SemverConstraint('1.0.0 - 2.0.0').type()).toEqual('range (hyphen)');
         expect(new SemverConstraint('>1.0.0').type()).toEqual('range');
         expect(new SemverConstraint('<1.0.0').type()).toEqual('range');
+        expect(new SemverConstraint('~>1.0.0').type()).toEqual('range (pessimistic)');
     });
 
     it('should cast to string', function() {
         expect(new SemverConstraint('1.0.0').toString()).toEqual('1.0.0');
         expect(new SemverConstraint('^1.x').toString()).toEqual('^1.x');
         expect(new SemverConstraint('~0.2.3').toString()).toEqual('~0.2.3');
+        expect(new SemverConstraint('~>0.2.3').toString()).toEqual('~>0.2.3');
     });
 
     describe('lower bound', function() {
@@ -75,7 +80,9 @@ describe('SemverConstraint', function() {
             '^0.0.x': '>=0.0.0',
             '^0.0': '>=0.0.0',
             '^1.x': '>=1.0.0',
-            '^0.x': '>=0.0.0'
+            '^0.x': '>=0.0.0',
+            '~>2.2': '>=2.2.0',
+            '~>2.2.0': '>=2.2.0'
         };
 
         Object.keys(ranges).forEach(function(range) {
@@ -120,7 +127,9 @@ describe('SemverConstraint', function() {
             '^0.0.x': '<0.1.0',
             '^0.0': '<0.1.0',
             '^1.x': '<2.0.0',
-            '^0.x': '<1.0.0'
+            '^0.x': '<1.0.0',
+            '~>2.2': '<3.0.0',
+            '~>2.2.0': '<2.3.0'
         };
 
         Object.keys(ranges).forEach(function(range) {

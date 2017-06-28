@@ -3,7 +3,7 @@ var browserify = require('browserify'),
     less = require('gulp-less'),
     prefix = require('gulp-autoprefixer'),
     ga = require('gulp-ga'),
-    jest = require('gulp-jest'),
+    jest = require('gulp-jest').default,
     source = require("vinyl-source-stream"),
     reactify = require('reactify'),
     notify = require('gulp-notify');
@@ -65,17 +65,16 @@ gulp.task('watch', function() {
 });
 
 gulp.task('test', function() {
-    gulp.src('.')
+    gulp.src('__tests__')
         .pipe(jest({
-            scriptPreprocessor: 'preprocessor.js',
+            scriptPreprocessor: '../preprocessor.js',
             unmockedModulePathPatterns: [
                 './node_modules/react',
                 './node_modules/semver'
             ],
             moduleFileExtensions: [
                 "js"
-            ],
-            testDirectoryName: "tests"
+            ]
         }));
 });
 

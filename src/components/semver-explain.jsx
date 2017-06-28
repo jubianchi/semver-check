@@ -4,6 +4,7 @@ var React = require('react'),
     SemverExplainConstraint = require('./semver-explain-constraint.jsx'),
     SemverExplainConstraintRange = require('./semver-explain-constraint-range.jsx'),
     SemverExplainConstraintComposer = require('./semver-explain-constraint-composer.jsx'),
+    SemverExplainConstraintBundler = require('./semver-explain-constraint-bundler.jsx'),
     SemverExplainConstraintWarning = require('./semver-explain-constraint-warning.jsx'),
     SemverExplainConstraintIncludes = require('./semver-explain-constraint-includes.jsx');
 
@@ -29,6 +30,8 @@ var SemverExplain = React.createClass({
                 <SemverExplainConstraintRange constraint={ this.props.constraint } />
 
                 <SemverExplainConstraintComposer constraint={ this.props.constraint } />
+
+                <SemverExplainConstraintBundler constraint={ this.props.constraint } />
 
                 <SemverExplainConstraintWarning constraint={ this.props.constraint } />
 

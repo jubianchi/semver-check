@@ -3,7 +3,7 @@ jest.dontMock('../src/libs/semver-constraint.js');
 
 describe('SemverExplainConstraint', function() {
     var React = require('react/addons');
-    var SemverExplainConstraint = require('../src/components/semver-explain-constraint.jsx');
+    var SemverExplainConstraint = React.createFactory(require('../src/components/semver-explain-constraint.jsx'));
     var TestUtils = React.addons.TestUtils;
 
     it('should display constraint type', function() {
