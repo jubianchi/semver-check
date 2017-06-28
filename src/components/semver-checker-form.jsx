@@ -1,4 +1,5 @@
-var React = require('react');
+var React = require('react'),
+    SemverConstraint = require('../libs/semver-constraint.js');
 
 var SemverCheckerForm = React.createClass({
     handleChange: function() {
@@ -36,7 +37,7 @@ var SemverCheckerForm = React.createClass({
             return;
         }
 
-        this.props.onSemverCheck(version, constraint);
+        this.props.onSemverCheck(version, new SemverConstraint(constraint));
     },
 
     render: function() {

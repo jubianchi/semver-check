@@ -11,7 +11,7 @@ jest.dontMock('../src/libs/semver-constraint.js');
 
 describe('SemverExplain', function() {
     var React = require('react/addons');
-    var SemverExplain = require('../src/components/semver-explain.jsx');
+    var SemverExplain = React.createFactory(require('../src/components/semver-explain.jsx'));
     var TestUtils = React.addons.TestUtils;
 
     describe('version constraint', function() {

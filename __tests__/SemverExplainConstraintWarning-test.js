@@ -4,7 +4,7 @@ jest.dontMock('../src/libs/semver-constraint.js');
 
 describe('SemverExplainConstraintWarning', function() {
     var React = require('react/addons');
-    var SemverExplainConstraintWarning = require('../src/components/semver-explain-constraint-warning.jsx');
+    var SemverExplainConstraintWarning = React.createFactory(require('../src/components/semver-explain-constraint-warning.jsx'));
     var TestUtils = React.addons.TestUtils;
 
     var unboundConstraints = ['*', '>1.2.3', '>=1.2.3'];

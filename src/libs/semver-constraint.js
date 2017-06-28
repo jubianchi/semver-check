@@ -47,7 +47,7 @@ SemverConstraint.prototype = {
     },
 
     cleaned: function(prerelease) {
-        var cleaned = this.desugared.replace(/^(\^|~|<=?|>=?)\s*/, '').replace(/\.\*/, '');
+        var cleaned = this.desugared.replace(/^(\^|~>?|<=?|>=?)\s*/, '').replace(/\.\*/, '');
 
         this.cleaned = function() {
             return cleaned;
@@ -70,6 +70,10 @@ SemverConstraint.prototype = {
 
             case this.desugared.indexOf(' - ') > -1:
                 type = 'range (hyphen)';
+                break;
+
+            case this.desugared.indexOf('~>') === 0:
+                type = 'range (pessimistic)';
                 break;
 
             case this.desugared.indexOf('~') === 0:
@@ -109,6 +113,7 @@ SemverConstraint.prototype = {
                 lower = padVersion(parts[0], '0');
                 break;
 
+            case 'range (pessimistic)':
             case 'range (tilde)':
                 lower = padVersion(this.cleaned(), '0');
                 break;
@@ -210,6 +215,14 @@ SemverConstraint.prototype = {
                 }
                 break;
 
+            case 'range (pessimistic)':
+                if (this.parts().length <= 2) {
+                    upper = semver.inc(padVersion(this.cleaned(), '0'), 'major');
+                } else {
+                    upper = semver.inc(this.cleaned(), 'minor');
+                }
+                break;
+
             case 'range':
                 if (this.operator() === '<') {
                     upper = padVersion(this.cleaned(), '0');
@@ -250,6 +263,7 @@ SemverConstraint.prototype = {
         };
 
         switch (this.type()) {
+            case 'range (pessimistic)':
             case 'range (tilde)':
                 if (this.parts().length === 1) {
                     include.minor = true;

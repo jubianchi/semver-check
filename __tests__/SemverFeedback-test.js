@@ -2,7 +2,7 @@ jest.dontMock('../src/components/semver-feedback.jsx');
 
 describe('SemverFeedback', function() {
     var React = require('react/addons');
-    var SemverFeedback = require('../src/components/semver-feedback.jsx');
+    var SemverFeedback = React.createFactory(require('../src/components/semver-feedback.jsx'));
     var TestUtils = React.addons.TestUtils;
 
     it('should give success feedback', function() {
