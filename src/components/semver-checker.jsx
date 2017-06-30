@@ -30,7 +30,7 @@ var SemverChecker = React.createClass({
 
     handleSemverCheck: function(version, constraint) {
         this.setState({
-            satisfies: !!semver.satisfies(version, constraint.lower() + ' ' + constraint.upper()),
+            satisfies: !!semver.satisfies(version, constraint.toString()),
             version: version,
             constraint: constraint.toString()
         });
