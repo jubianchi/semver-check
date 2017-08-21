@@ -13,6 +13,8 @@ describe('SemverConstraint', function() {
     });
 
     it('should compute constraint parts', function() {
+        expect(new SemverConstraint('1').parts()).toEqual(['1']);
+        expect(new SemverConstraint('1.0').parts()).toEqual(['1', '0']);
         expect(new SemverConstraint('1.0.0').parts()).toEqual(['1', '0', '0']);
         expect(new SemverConstraint('^1.0.0').parts()).toEqual(['1', '0', '0']);
         expect(new SemverConstraint('~1.0.0').parts()).toEqual(['1', '0', '0']);
@@ -22,6 +24,8 @@ describe('SemverConstraint', function() {
     });
 
     it('should compute cleaned version', function() {
+        expect(new SemverConstraint('1').cleaned()).toEqual('1');
+        expect(new SemverConstraint('1.0').cleaned()).toEqual('1.0');
         expect(new SemverConstraint('1.0.0').cleaned()).toEqual('1.0.0');
         expect(new SemverConstraint('^1.0.*').cleaned()).toEqual('1.0');
         expect(new SemverConstraint('~  1.0.0').cleaned()).toEqual('1.0.0');
@@ -41,6 +45,8 @@ describe('SemverConstraint', function() {
     });
 
     it('should cast to string', function() {
+        expect(new SemverConstraint('1').toString()).toEqual('1');
+        expect(new SemverConstraint('1.0').toString()).toEqual('1.0');
         expect(new SemverConstraint('1.0.0').toString()).toEqual('1.0.0');
         expect(new SemverConstraint('^1.x').toString()).toEqual('^1.x');
         expect(new SemverConstraint('~0.2.3').toString()).toEqual('~0.2.3');
@@ -114,11 +120,14 @@ describe('SemverConstraint', function() {
             '1.2': '<1.3.0',
             '~1.2.3': '<1.3.0',
             '~1.2': '<1.3.0',
+            '~1.0': '<1.1.0',
             '~1': '<2.0.0',
             '~0.2.3': '<0.3.0',
             '~0.2': '<0.3.0',
             '~0': '<1.0.0',
             '~1.2.3-beta.2': '<1.3.0',
+            '^1': '<2.0.0',
+            '^1.0': '<2.0.0',
             '^1.2.3': '<2.0.0',
             '^0.2.3': '<0.3.0',
             '^0.0.3': '<0.0.4',
