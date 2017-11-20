@@ -315,6 +315,13 @@ SemverConstraint.prototype = {
         return include;
     },
 
+    satisfies: function(version) {
+        return (
+            (!this.lower() || !!semver.satisfies(version, this.lower().toString())) &&
+            (!this.upper() || !!semver.satisfies(version, this.upper().toString()))
+        );
+    },
+
     toString: function() {
         return this.constraint;
     }
