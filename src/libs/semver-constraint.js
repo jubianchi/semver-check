@@ -97,15 +97,13 @@ SemverConstraint.prototype = {
                 type = 'version';
         }
 
-        this.type = function() {
-            return type;
-        };
-
         return type;
     },
 
     lower: function() {
         var lower;
+
+        console.log(this.toString(), this.type());
 
         switch (this.type()) {
             case 'range (hyphen)':
@@ -138,6 +136,10 @@ SemverConstraint.prototype = {
                 } else {
                     lower = padVersion(this.desugared, 0);
                 }
+                break;
+
+            case 'version':
+                lower = this.constraint;
                 break;
         }
 
@@ -241,6 +243,10 @@ SemverConstraint.prototype = {
                         }
                     }
                 }
+                break;
+            case 'version':
+                upper = this.constraint;
+                inclusive = true;
                 break;
         }
 
