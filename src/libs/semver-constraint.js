@@ -103,8 +103,6 @@ SemverConstraint.prototype = {
     lower: function() {
         var lower;
 
-        console.log(this.toString(), this.type());
-
         switch (this.type()) {
             case 'range (hyphen)':
                 var parts = this.desugared.split(' - ');
