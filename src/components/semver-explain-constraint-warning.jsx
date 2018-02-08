@@ -13,7 +13,7 @@ var SemverExplainConstraintWarning = React.createClass({
 
             return (
                 <div>
-                    <If test={ !this.props.constraint.upper() && ['version', 'range (advanced)'].indexOf(this.props.constraint.type()) === -1 && ['<', '<='].indexOf(this.props.constraint.operator()) === -1 }>
+                    <If test={ !this.props.constraint.upper() && ['version', 'range (advanced)'].indexOf(this.props.constraint.type()) === -1 && (['<', '<='].indexOf(this.props.constraint.operator()) === -1 && this.props.constraint.toString().indexOf('<') === -1) }>
                         <p>This constraint <a href="#why-using-loose-constraint-is-bad">does not provide an upper bound</a> which means you will probably get <strong>unexpected BC break</strong>.</p>
                     </If>
 

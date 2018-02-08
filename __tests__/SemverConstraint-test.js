@@ -48,8 +48,8 @@ describe('SemverConstraint', function() {
     });
 
     describe('lower bound', function() {
-        it('should not exist on version constraint', function() {
-            expect(new SemverConstraint('1.0.0').lower()).toEqual(undefined);
+        it('should exist on version constraint', function() {
+            expect(new SemverConstraint('1.0.0').lower()).toEqual(new SemverConstraint('>=1.0.0'));
         });
 
         var ranges = {
@@ -95,8 +95,8 @@ describe('SemverConstraint', function() {
     });
 
     describe('upper bound', function() {
-        it('should not exist on version constraint', function() {
-            expect(new SemverConstraint('1.0.0').upper()).toEqual(undefined);
+        it('should exist on version constraint', function() {
+            expect(new SemverConstraint('1.0.0').upper()).toEqual(new SemverConstraint('<=1.0.0'));
         });
 
         var ranges = {
@@ -162,10 +162,11 @@ describe('SemverConstraint', function() {
             '~0.2.3': ['0.2.3', '0.2.42'],
             '~0.2': ['0.2.3', '0.2.42'],
             '~0': ['0.0.1', '0.2.3'],
-            '~1.2.3-beta.2': ['1.2.3', '1.2.42', /*'1.2.5-beta.0'*/],
+            '~1.2.3-beta.2': ['1.2.3', '1.2.42'/*, '1.2.5-beta.0'*/],
             '^1.2.3': ['1.2.3', '1.2.42'],
             '^0.2.3': ['0.2.3', '0.2.42'],
-            '~>0.17': ['0.22.0']
+            '~>0.17': ['0.22.0'],
+            '>=1.12.14 <1.15.0': ['1.12.14', '1.14.0']
         };
 
         Object.keys(ranges).forEach(function(range) {
@@ -174,6 +175,41 @@ describe('SemverConstraint', function() {
                     var constraint = new SemverConstraint(range);
 
                     expect(constraint.satisfies(version)).toBe(true);
+                });
+            });
+        });
+    });
+
+    describe('does not satisfy', function() {
+        var ranges = {
+            '1.2.3': ['0.0.1', '1.2.5', '2.0.0'],
+            '1.2.3 - 2.3.4': ['0.0.1', '1.0.0', '2.5.0', '3.0.0'],
+            '1.2 - 2.3.4': ['0.0.1', '1.0.0', '2.5.0', '3.0.0'],
+            '1.2.3 - 2.3': ['0.0.1', '1.0.0', '2.5.0', '3.0.0'],
+            '1.2.3 - 2': ['0.0.1', '1.0.0', '3.0.0'],
+            '1.*': ['0.0.1', '2.0.0'],
+            '1.x': ['0.0.1', '2.0.0'],
+            '1.2.*': ['1.0.0', '1.3.1', '2.0.0'],
+            '1.2.x': ['1.0.0', '1.3.1', '2.0.0'],
+            '1': ['0.0.1', '2.0.0'],
+            '1.2': ['1.0.0', '1.3.1', '2.0.0'],
+            '~1.2.3': ['1.0.0', '2.0.0'],
+            '~1.2': ['1.0.0', '2.0.0'],
+            '~1': ['0.0.1', '2.0.0'],
+            '~0.2.3': ['0.0.1', '1.0.0', '2.0.0'],
+            '~0.2': ['0.0.1', '1.0.0', '2.0.0'],
+            '~0': ['1.0.0'],
+            '>=1.12.14 <1.15.0': ['1.15.0', '99.99.99'],
+            '>=1.0': ['0.0.1'],
+            '>1.0': ['0.0.1']
+        };
+
+        Object.keys(ranges).forEach(function(range) {
+            ranges[range].forEach(function(version) {
+                it(version + ' should not satisfy range ' + range, function() {
+                    var constraint = new SemverConstraint(range);
+
+                    expect(constraint.satisfies(version)).toBe(false);
                 });
             });
         });
