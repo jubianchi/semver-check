@@ -177,7 +177,7 @@ SemverConstraint.prototype = {
                 if (this.parts().length === 1) {
                     upper = semver.inc(padVersion(this.cleaned(), '0'), 'major');
                 } else {
-                    if (this.parts()[1] === "0" && this.parts()[2].match(/^0-/)) {
+                    if (this.parts()[1] === '0' && (this.parts()[2] || '').match(/^0-/)) {
                         upper = semver.inc(padVersion(this.lower().cleaned(false), '0'), 'minor');
                     } else {
                         upper = semver.inc(padVersion(this.cleaned(), '0'), 'minor');
@@ -207,7 +207,7 @@ SemverConstraint.prototype = {
                         upper = semver.inc(padVersion(this.lower().cleaned(), '0'), 'major');
                     }
                 } else {
-                    if (this.parts()[1] === "0" && this.parts()[2].match(/^0-/)) {
+                    if (this.parts()[1] === "0" && (this.parts()[2] || '').match(/^0-/)) {
                         upper = semver.inc(padVersion(this.lower().cleaned(false), '0'), 'major');
                     } else {
                         upper = semver.inc(padVersion(this.lower().cleaned(), '0'), 'major');
