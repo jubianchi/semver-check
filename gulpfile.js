@@ -10,7 +10,7 @@ var browserify = require('browserify'),
 
 
 var paths = {
-    layout: ['./src/index.html'],
+    layout: ['./src/index.html', './src/google9b0e39e61d9ceee7.html'],
     less: ['./src/less/**/*.less'],
     images: ['./src/images/**/*.*'],
     js: ['./src/main.js', './src/components/*.jsx', './src/libs/*.js']
