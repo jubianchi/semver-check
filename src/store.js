@@ -1,4 +1,4 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, compose } from 'redux';
 import { VERSION, CONSTRAINT } from './actions';
 import semver from './semver';
 
@@ -40,10 +40,14 @@ const reducers = combineReducers({
     constraint,
 });
 
+const enhancers = [];
+
+if (process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION__) {
+    enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__())
+}
+
 export default createStore(
     reducers,
     initialState,
-    process.env.NODE_ENV !== 'production' &&
-        window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__(),
+    compose(...enhancers),
 );
