@@ -21,7 +21,7 @@ This tiny webapp checks if a given version satisfies another given constraint in
 ## Run it!
 
 ```
-npm start
+yarn start
 ```
 
 This will start the build and open your web browser.
