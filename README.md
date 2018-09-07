@@ -1,4 +1,8 @@
-# Online SemVer Checker [![Build Status](https://travis-ci.org/jubianchi/semver-check.svg?branch=master)](https://travis-ci.org/jubianchi/semver-check) [![Analytics](https://ga-beacon.appspot.com/UA-56445984-1/jubianchi/semver-check)](https://github.com/igrigorik/ga-beacon)
+# Online SemVer Checker
+
+[![Build Status](https://travis-ci.org/jubianchi/semver-check.svg?branch=master)](https://travis-ci.org/jubianchi/semver-check)
+[![Analytics](https://ga-beacon.appspot.com/UA-56445984-1/jubianchi/semver-check)](https://github.com/igrigorik/ga-beacon)
+[![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 A basic web app coded with ReactJS to check a version against a SemVer constraint.
 
@@ -15,13 +19,10 @@ Composer and NPM for example don't handle version constraints the same way. It's
 
 This tiny webapp checks if a given version satisfies another given constraint in the NPM world.
 
-But to be honest, this project is also the opportunity to give a shot to ReactJS and its JSX components!
-
 ## Run it!
 
 ```
-npm install
-gulp dev
+yarn start
 ```
 
-And just open `dist/index.html`
+This will start the build and open your web browser.

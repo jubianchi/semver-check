@@ -3,30 +3,28 @@ language: node_js
 sudo: false
 
 node_js:
-  - 8
+    - 8
 
 env:
-  global:
-    secure: VSpgvnHMYfOnJNjCMZqGE9tmautFPmsGhueBpZkn66TU45EIfy8ZfAnkjZLcjbNAxYftM0i/s1a+DQN4/IbS/DK1h7IhE5QYMvYTgL81dqUm6I3TghVTx0WxHJBSePeCdv+Zwv2SMNOXNX/KnHTOnIKk/catCFw5Q30Lij01rUI=
+    global:
+        secure: VSpgvnHMYfOnJNjCMZqGE9tmautFPmsGhueBpZkn66TU45EIfy8ZfAnkjZLcjbNAxYftM0i/s1a+DQN4/IbS/DK1h7IhE5QYMvYTgL81dqUm6I3TghVTx0WxHJBSePeCdv+Zwv2SMNOXNX/KnHTOnIKk/catCFw5Q30Lij01rUI=
 
 cache:
-  directories:
-    - node_modules
+    directories:
+        - node_modules
 
 install:
-  - npm install -g gulp
-  - npm install
+    - yarn
 
 script:
-  - npm test
-  - npm run build
+    - yarn cs -l
+    - yarn test
+    - yarn build
 
 deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: "$GITHUB_TOKEN"
-  local_dir: build
-  on:
-    branch: master
-
-
+    provider: pages
+    skip_cleanup: true
+    github_token: '$GITHUB_TOKEN'
+    local_dir: build
+    on:
+        branch: master
