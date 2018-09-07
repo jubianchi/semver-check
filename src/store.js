@@ -43,11 +43,7 @@ const reducers = combineReducers({
 const enhancers = [];
 
 if (process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION__) {
-    enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__())
+    enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__());
 }
 
-export default createStore(
-    reducers,
-    initialState,
-    compose(...enhancers),
-);
+export default createStore(reducers, initialState, compose(...enhancers));
