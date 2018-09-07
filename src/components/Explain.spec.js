@@ -4,9 +4,7 @@ import { Explain } from './Explain';
 import ExplainVersion from './ExplainVersion';
 import ExplainConstraint from './ExplainConstraint';
 
-
-
-describe('ExplainConstraint', () => {
+describe('Explain', () => {
     it('should render version explanation', () => {
         const props = {
             version: {
