@@ -43,12 +43,16 @@ const explode = range => {
 
 export default {
     ...semver,
+    satisfies: (version, constraint) => {
+        return semver.satisfies(version, constraint.raw);
+    },
+    cleanRange: range => range.trim().replace(/v(\d+\.)/gi, '$1').replace(/(?<![><])=(\d+\.)/g, '$1'),
     coerceRange: range => {
-        if (range === '') {
+        if (!range && range !== 0) {
             return null;
         }
 
-        const raw = semver.validRange(range);
+        const raw = semver.validRange(range.toString());
 
         if (raw === null || raw === '') {
             return null;
@@ -102,15 +106,16 @@ export default {
             coerced.hyphen = true;
         }
 
-        if (new RegExp(`^${STRICT}$`).exec(range)) {
+        if (new RegExp(`^${STRICT}$`).exec(range.toString())) {
             coerced.strict = true;
+            coerced.operator = '=';
 
             Object.assign(coerced, explode(range));
         } else if (new RegExp(`^${WILDCARD}$`).exec(range)) {
             coerced.wildcard = true;
 
             Object.assign(coerced, explode(range.replace(/[xX]/, '*')));
-        } else if (new RegExp(`^${RANGE}$`).exec(range)) {
+        } else if (new RegExp(`^${RANGE}$`).exec(range.toString())) {
             coerced.range = true;
 
             const matches = (new RegExp('^(<=|<|>=|>|=)')).exec(range);

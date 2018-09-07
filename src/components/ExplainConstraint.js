@@ -10,7 +10,7 @@ import ExplainConstraintWildcard from "./ExplainConstraintWildcard";
 import ExplainConstraintTilde from "./ExplainConstraintTilde";
 import Card from "./Card";
 
-const ConstraintExplain = (props) => {
+const ExplainConstraint = (props) => {
     return (
         <Card className={`card ${props.constraint.semver.strict === true && 'border-danger'} ${props.constraint.semver.tilde === true && props.constraint.semver.major && props.constraint.semver.minor && !props.constraint.semver.patch && 'border-warning'}`}>
             <h5 className="card-title"><ConstraintType constraint={props.constraint}/> constraint</h5>
@@ -52,8 +52,8 @@ const ConstraintExplain = (props) => {
     );
 };
 
-ConstraintExplain.propTypes = {
+ExplainConstraint.propTypes = {
     constraint: PropTypes.object.isRequired,
 };
 
-export default ConstraintExplain;
+export default ExplainConstraint;

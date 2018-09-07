@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import semver from '../semver';
 import Card from './Card';
 
-const VersionExplain = (props) => {
+const ExplainVersion = (props) => {
     let satisfies = null;
 
     if (props.constraint) {
-        satisfies = semver.satisfies(props.version.version, props.constraint.semver.raw);
+        satisfies = semver.satisfies(props.version.version, props.constraint.semver);
     }
 
     return (
@@ -30,13 +30,13 @@ const VersionExplain = (props) => {
     );
 };
 
-VersionExplain.propTypes = {
+ExplainVersion.propTypes = {
     version: PropTypes.object.isRequired,
     constraint: PropTypes.object,
 };
 
-VersionExplain.defaultProps = {
+ExplainVersion.defaultProps = {
     constraint: null,
 };
 
-export default VersionExplain;
+export default ExplainVersion;

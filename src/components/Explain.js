@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import ConstraintExplain from "./ExplainConstraint";
-import VersionExplain from "./ExplainVersion";
+import ExplainConstraint from "./ExplainConstraint";
+import ExplainVersion from "./ExplainVersion";
 
 export const Explain = (props) => (
     <section className={`row ${props.className || ''}`}>
         <div className="col-6">
-            { props.constraint.semver !== null && <ConstraintExplain {...props}/> }
+            { props.constraint.semver !== null && <ExplainConstraint {...props}/> }
         </div>
         <div className="col-6">
-            { props.version.semver !== null && <VersionExplain {...props}/> }
+            { props.version.semver !== null && <ExplainVersion {...props}/> }
         </div>
     </section>
 );

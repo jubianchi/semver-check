@@ -23,7 +23,7 @@ const version = (state = { version: '', semver: null}, action) => {
 
 const constraint = (state = { constraint: '', semver: null}, action) => {
     if (action.type === CONSTRAINT) {
-        const cleaned = action.constraint.trim().replace(/v(\d+\.)/gi, '$1').replace(/=(\d+\.)/g, '$1');
+        const cleaned = semver.cleanRange(action.constraint);
 
         return {
             ...state,
