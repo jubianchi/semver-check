@@ -46,7 +46,11 @@ export default {
     satisfies: (version, constraint) => {
         return semver.satisfies(version, constraint.raw);
     },
-    cleanRange: range => range.trim().replace(/v(\d+\.)/gi, '$1').replace(/(?<![><])=(\d+\.)/g, '$1'),
+    cleanRange: range =>
+        range
+            .trim()
+            .replace(/v(\d+\.)/gi, '$1')
+            .replace(/(?<![><])=(\d+\.)/g, '$1'),
     coerceRange: range => {
         if (!range && range !== 0) {
             return null;
@@ -96,9 +100,14 @@ export default {
             Object.assign(coerced, explode(range.replace(/^~>/, '')));
 
             if (coerced.major !== null && coerced.minor !== null && coerced.patch !== null) {
-                coerced.raw = `>=${coerced.major}.${coerced.minor || 0}.${coerced.patch || 0} <${coerced.major}.${parseInt(coerced.minor, 10) + 1}.0`;
+                coerced.raw = `>=${coerced.major}.${coerced.minor || 0}.${coerced.patch || 0} <${
+                    coerced.major
+                }.${parseInt(coerced.minor, 10) + 1}.0`;
             } else {
-                coerced.raw = `>=${coerced.major}.${coerced.minor || 0}.${coerced.patch || 0} <${parseInt(coerced.major, 10) + 1}.0.0`;
+                coerced.raw = `>=${coerced.major}.${coerced.minor || 0}.${coerced.patch || 0} <${parseInt(
+                    coerced.major,
+                    10,
+                ) + 1}.0.0`;
             }
         }
 
@@ -118,7 +127,7 @@ export default {
         } else if (new RegExp(`^${RANGE}$`).exec(range.toString())) {
             coerced.range = true;
 
-            const matches = (new RegExp('^(<=|<|>=|>|=)')).exec(range);
+            const matches = new RegExp('^(<=|<|>=|>|=)').exec(range);
 
             if (matches !== null) {
                 coerced.operator = matches[1] || null;
@@ -128,5 +137,5 @@ export default {
         }
 
         return coerced;
-    }
+    },
 };

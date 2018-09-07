@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Quote.css';
 
-const Quote = (props) => (
+const Quote = props => (
     <blockquote className={`blockquote pl-3 ${props.className}`}>
         {props.children}
 
@@ -16,10 +16,7 @@ Quote.propTypes = {
     className: PropTypes.string,
     author: PropTypes.string.isRequired,
     source: PropTypes.string.isRequired,
-    children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node
-    ]).isRequired
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
 Quote.defaultProps = {

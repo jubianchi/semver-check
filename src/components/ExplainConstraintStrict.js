@@ -1,10 +1,13 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Alert from "./Alert";
+import Alert from './Alert';
 
-const ExplainConstraintStrict = (props) => (
+const ExplainConstraintStrict = props => (
     <Fragment>
-        <p className="card-text"><code>{props.constraint.constraint}</code> is a <strong>strict</strong> constraint. It means that it will match <strong>a single version</strong>.</p>
+        <p className="card-text">
+            <code>{props.constraint.constraint}</code> is a <strong>strict</strong> constraint. It means that it will
+            match <strong>a single version</strong>.
+        </p>
 
         <Alert error>
             This constraint is <strong>too strict</strong> which means <strong>you won't even get bug fixes</strong>.

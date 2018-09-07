@@ -41,7 +41,7 @@ describe('semver', () => {
             Object.keys(data).forEach(dirty => {
                 expect(semver.cleanRange(dirty)).toBe(data[dirty]);
             });
-        })
+        });
     });
 
     describe('coerceRange', () => {
@@ -115,7 +115,7 @@ describe('semver', () => {
                 '1.2.3 - 2.3': ['1.2.3', '2.0.0', '2.3.4'],
                 '1.2.3 - 2': ['1.2.3', '2.0.0', '2.3.4'],
                 '*': ['0.0.1', '1.2.3', '2.3.4', '42.13.37'],
-                'x': ['0.0.1', '1.2.3', '2.3.4', '42.13.37'],
+                x: ['0.0.1', '1.2.3', '2.3.4', '42.13.37'],
                 '1.*': ['1.0.0', '1.0.1', '1.1.0', '1.2.3'],
                 '1.x': ['1.0.0', '1.0.1', '1.1.0', '1.2.3'],
                 '1.2.*': ['1.2.0', '1.2.1'],
@@ -132,11 +132,11 @@ describe('semver', () => {
                 '^1.2.3': ['1.2.3', '1.2.42'],
                 '^0.2.3': ['0.2.3', '0.2.42'],
                 '~>0.17': ['0.22.0'],
-                '>=1.12.14 <1.15.0': ['1.12.14', '1.14.0']
+                '>=1.12.14 <1.15.0': ['1.12.14', '1.14.0'],
             };
 
-            Object.keys(ranges).forEach((range) => {
-                ranges[range].forEach((version) => {
+            Object.keys(ranges).forEach(range => {
+                ranges[range].forEach(version => {
                     it(version + ' should satisfy range ' + range, () => {
                         const constraint = semver.coerceRange(range);
 
@@ -171,8 +171,8 @@ describe('semver', () => {
                 '~1.2.3-beta.2': ['1.2.5-beta.0'],
             };
 
-            Object.keys(ranges).forEach((range) => {
-                ranges[range].forEach((version) => {
+            Object.keys(ranges).forEach(range => {
+                ranges[range].forEach(version => {
                     it(version + ' should not satisfy range ' + range, () => {
                         const constraint = semver.coerceRange(range);
 
@@ -183,4 +183,3 @@ describe('semver', () => {
         });
     });
 });
-

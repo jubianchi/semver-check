@@ -1,12 +1,15 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import WhatYouGet from "./WhatYouGet";
+import WhatYouGet from './WhatYouGet';
 
-const ExplainConstraintCaret = (props) => (
+const ExplainConstraintCaret = props => (
     <Fragment>
-        <p className="card-text"><code>{props.constraint.constraint}</code> is a <strong>caret</strong> constraint. It means that it will match <strong>several versions</strong>.</p>
+        <p className="card-text">
+            <code>{props.constraint.constraint}</code> is a <strong>caret</strong> constraint. It means that it will
+            match <strong>several versions</strong>.
+        </p>
 
-        <WhatYouGet minor patch/>
+        <WhatYouGet minor patch />
     </Fragment>
 );
 

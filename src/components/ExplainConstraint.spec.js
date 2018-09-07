@@ -10,10 +10,10 @@ describe('ExplainConstraint', () => {
                 semver: {
                     caret: true,
                 },
-            }
+            },
         };
 
-        var node = render(<ExplainConstraint {...props}/>);
+        var node = render(<ExplainConstraint {...props} />);
         expect(node.text()).toContain(props.constraint.constraint + ' is a caret constraint');
     });
 
@@ -24,10 +24,10 @@ describe('ExplainConstraint', () => {
                 semver: {
                     tilde: true,
                 },
-            }
+            },
         };
 
-        var node = render(<ExplainConstraint {...props}/>);
+        var node = render(<ExplainConstraint {...props} />);
         expect(node.text()).toContain(props.constraint.constraint + ' is a tilde constraint');
     });
 
@@ -38,10 +38,10 @@ describe('ExplainConstraint', () => {
                 semver: {
                     pessimistic: true,
                 },
-            }
+            },
         };
 
-        var node = render(<ExplainConstraint {...props}/>);
+        var node = render(<ExplainConstraint {...props} />);
         expect(node.text()).toContain(props.constraint.constraint + ' is a pessimistic constraint');
     });
 
@@ -52,10 +52,10 @@ describe('ExplainConstraint', () => {
                 semver: {
                     strict: true,
                 },
-            }
+            },
         };
 
-        var node = render(<ExplainConstraint {...props}/>);
+        var node = render(<ExplainConstraint {...props} />);
         expect(node.text()).toContain(props.constraint.constraint + ' is a strict constraint');
     });
 
@@ -66,10 +66,10 @@ describe('ExplainConstraint', () => {
                 semver: {
                     hyphen: true,
                 },
-            }
+            },
         };
 
-        var node = render(<ExplainConstraint {...props}/>);
+        var node = render(<ExplainConstraint {...props} />);
         expect(node.text()).toContain(props.constraint.constraint + ' is a hyphen constraint');
     });
 
@@ -80,14 +80,12 @@ describe('ExplainConstraint', () => {
                 semver: {
                     wildcard: true,
                 },
-            }
+            },
         };
 
-        var node = render(<ExplainConstraint {...props}/>);
+        var node = render(<ExplainConstraint {...props} />);
         expect(node.text()).toContain(props.constraint.constraint + ' is a x-range constraint');
     });
-
-
 
     it('should display range constraints', () => {
         const props = {
@@ -97,11 +95,10 @@ describe('ExplainConstraint', () => {
                     range: true,
                     raw: '>=1.0.0 <1.5.0',
                 },
-            }
+            },
         };
 
-        var node = render(<ExplainConstraint {...props}/>);
+        var node = render(<ExplainConstraint {...props} />);
         expect(node.text()).toContain(props.constraint.constraint + ' is a range constraint');
     });
 });
-

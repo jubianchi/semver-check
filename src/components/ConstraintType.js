@@ -36,7 +36,7 @@ const type = semver => {
     return 'Weird';
 };
 
-const ConstraintType = (props) => type(props.constraint.semver);
+const ConstraintType = props => type(props.constraint.semver);
 
 ConstraintType.propTypes = {
     className: PropTypes.string,

@@ -13,7 +13,7 @@ describe('Explain', () => {
             constraint: {},
         };
 
-        var node = shallow(<Explain {...props}/>);
+        var node = shallow(<Explain {...props} />);
         expect(node.find(ExplainVersion).length).toBe(1);
     });
 
@@ -25,23 +25,22 @@ describe('Explain', () => {
             },
         };
 
-        var node = shallow(<Explain {...props}/>);
+        var node = shallow(<Explain {...props} />);
         expect(node.find(ExplainConstraint).length).toBe(1);
     });
 
     it('should render both', () => {
         const props = {
             version: {
-                semver: {}
+                semver: {},
             },
             constraint: {
                 semver: {},
             },
         };
 
-        var node = shallow(<Explain {...props}/>);
+        var node = shallow(<Explain {...props} />);
         expect(node.find(ExplainVersion).length).toBe(1);
         expect(node.find(ExplainConstraint).length).toBe(1);
     });
 });
-

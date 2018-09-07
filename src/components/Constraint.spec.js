@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, shallow } from 'enzyme';
 import Constraint from './Constraint';
-import {DebounceInput} from 'react-debounce-input';
+import { DebounceInput } from 'react-debounce-input';
 
 describe('Constraint', () => {
     it('should render an input', () => {
@@ -9,7 +9,7 @@ describe('Constraint', () => {
             onConstraint: () => {},
         };
 
-        var node = render(<Constraint {...props}/>);
+        var node = render(<Constraint {...props} />);
         expect(node.find('input').length).toBe(1);
     });
 
@@ -19,7 +19,7 @@ describe('Constraint', () => {
             onConstraint: () => {},
         };
 
-        var node = render(<Constraint {...props}/>);
+        var node = render(<Constraint {...props} />);
         expect(node.find('input').prop('value')).toBe(props.constraint);
     });
 
@@ -30,7 +30,7 @@ describe('Constraint', () => {
             onConstraint: () => {},
         };
 
-        var node = render(<Constraint {...props}/>);
+        var node = render(<Constraint {...props} />);
         expect(node.find('input').hasClass('is-invalid')).toBe(true);
     });
 
@@ -38,18 +38,16 @@ describe('Constraint', () => {
         const props = {
             constraint: '1.0.0',
             semver: {
-                raw: '1.0.0'
+                raw: '1.0.0',
             },
             onConstraint: () => {},
         };
 
-        var node = render(<Constraint {...props}/>);
+        var node = render(<Constraint {...props} />);
         expect(node.find('input').hasClass('is-valid')).toBe(true);
     });
 
-
-
-    it('should call change handler (debounced)', (done) => {
+    it('should call change handler (debounced)', done => {
         const props = {
             constraint: '',
             semver: null,
@@ -59,13 +57,16 @@ describe('Constraint', () => {
         const event = {
             persist: () => {},
             target: {
-                value: '1.0.0'
-            }
+                value: '1.0.0',
+            },
         };
 
-        var node = shallow(<Constraint {...props}/>);
+        var node = shallow(<Constraint {...props} />);
 
-        node.find(DebounceInput).shallow().find('input').simulate('change', event);
+        node.find(DebounceInput)
+            .shallow()
+            .find('input')
+            .simulate('change', event);
 
         setTimeout(() => {
             expect(props.onConstraint).toHaveBeenCalled();
@@ -74,4 +75,3 @@ describe('Constraint', () => {
         }, 300);
     });
 });
-

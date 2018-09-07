@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, shallow } from 'enzyme';
 import Version from './Version';
-import {DebounceInput} from 'react-debounce-input';
+import { DebounceInput } from 'react-debounce-input';
 
 describe('Version', () => {
     it('should render an input', () => {
@@ -10,7 +10,7 @@ describe('Version', () => {
             onVersion: () => {},
         };
 
-        var node = render(<Version {...props}/>);
+        var node = render(<Version {...props} />);
         expect(node.find('input').length).toBe(1);
     });
 
@@ -20,7 +20,7 @@ describe('Version', () => {
             onVersion: () => {},
         };
 
-        var node = render(<Version {...props}/>);
+        var node = render(<Version {...props} />);
         expect(node.find('input').prop('value')).toBe(props.version);
     });
 
@@ -31,7 +31,7 @@ describe('Version', () => {
             onVersion: () => {},
         };
 
-        var node = render(<Version {...props}/>);
+        var node = render(<Version {...props} />);
         expect(node.find('input').hasClass('is-invalid')).toBe(true);
     });
 
@@ -39,18 +39,16 @@ describe('Version', () => {
         const props = {
             version: '1.0.0',
             semver: {
-                raw: '1.0.0'
+                raw: '1.0.0',
             },
             onVersion: () => {},
         };
 
-        var node = render(<Version {...props}/>);
+        var node = render(<Version {...props} />);
         expect(node.find('input').hasClass('is-valid')).toBe(true);
     });
 
-
-
-    it('should call change handler (debounced)', (done) => {
+    it('should call change handler (debounced)', done => {
         const props = {
             version: '',
             semver: null,
@@ -60,13 +58,16 @@ describe('Version', () => {
         const event = {
             persist: () => {},
             target: {
-                value: '1.0.0'
-            }
+                value: '1.0.0',
+            },
         };
 
-        var node = shallow(<Version {...props}/>);
+        var node = shallow(<Version {...props} />);
 
-        node.find(DebounceInput).shallow().find('input').simulate('change', event);
+        node.find(DebounceInput)
+            .shallow()
+            .find('input')
+            .simulate('change', event);
 
         setTimeout(() => {
             expect(props.onVersion).toHaveBeenCalled();
@@ -75,4 +76,3 @@ describe('Version', () => {
         }, 300);
     });
 });
-

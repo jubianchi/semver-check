@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import Constraint from "./Constraint";
-import Version from "./Version";
-import {version, constraint} from '../actions';
+import { connect } from 'react-redux';
+import Constraint from './Constraint';
+import Version from './Version';
+import { version, constraint } from '../actions';
 
-export const Form = (props) => (
+export const Form = props => (
     <section className={`row ${props.className || ''}`}>
         <div className="col-6">
-            <Constraint onConstraint={props.onConstraint} {...props.constraint}/>
+            <Constraint onConstraint={props.onConstraint} {...props.constraint} />
         </div>
         <div className="col-6">
-            <Version onVersion={props.onVersion} {...props.version}/>
+            <Version onVersion={props.onVersion} {...props.version} />
         </div>
     </section>
 );
@@ -29,5 +29,5 @@ export default connect(
     dispatch => ({
         onConstraint: value => dispatch(constraint(value)),
         onVersion: value => dispatch(version(value)),
-    })
+    }),
 )(Form);
