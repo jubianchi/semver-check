@@ -7,7 +7,8 @@ node_js:
 
 env:
     global:
-        secure: VSpgvnHMYfOnJNjCMZqGE9tmautFPmsGhueBpZkn66TU45EIfy8ZfAnkjZLcjbNAxYftM0i/s1a+DQN4/IbS/DK1h7IhE5QYMvYTgL81dqUm6I3TghVTx0WxHJBSePeCdv+Zwv2SMNOXNX/KnHTOnIKk/catCFw5Q30Lij01rUI=
+        - secure: VSpgvnHMYfOnJNjCMZqGE9tmautFPmsGhueBpZkn66TU45EIfy8ZfAnkjZLcjbNAxYftM0i/s1a+DQN4/IbS/DK1h7IhE5QYMvYTgL81dqUm6I3TghVTx0WxHJBSePeCdv+Zwv2SMNOXNX/KnHTOnIKk/catCFw5Q30Lij01rUI=
+        - secure: a8KaTHbJvZdxTY/eORok3v8ljQwcbzfRmSEF9Ot4GI0g8KLza/I8q+KOCkfQKQ901H5ddQ5IqaRy9rZa+DyjR4BUXinYRB6qg88moQwDZWQaJ+jNyEaBPxgZBBaPlY1xEryEFLzIJ9zPWHBaii0Vn9VXNq42Jv/KOwMfa39MHl4=
 
 cache:
     directories:
@@ -15,11 +16,18 @@ cache:
 
 install:
     - yarn
+    - yarn build-css
+
+before_script:
+    - greenkeeper-lockfile-update
 
 script:
     - yarn cs -l
     - yarn test
     - yarn build
+
+after_script:
+    - greenkeeper-lockfile-upload
 
 deploy:
     provider: pages
