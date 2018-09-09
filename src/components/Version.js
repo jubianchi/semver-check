@@ -1,38 +1,48 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DebounceInput } from 'react-debounce-input';
 
-const Version = props => {
-    const handleInput = ({ target: { value: version } }) => {
-        props.onVersion(version);
+export default class Version extends Component {
+    static propTypes = {
+        onVersion: PropTypes.func.isRequired,
+        version: PropTypes.string,
+        semver: PropTypes.object,
     };
 
-    const valid = props.semver !== null;
+    static defaultProps = {
+        version: '',
+        semver: null,
+    };
 
-    return (
-        <div className="form-group">
-            <label>Version</label>
-            <DebounceInput
-                className={`form-control ${valid ? 'is-valid' : 'is-invalid'}`}
-                type="text"
-                placeholder="1.0.0"
-                onChange={handleInput}
-                value={props.version}
-                debounceTimeout={150}
-            />
-        </div>
-    );
-};
+    constructor() {
+        super();
 
-Version.propTypes = {
-    onVersion: PropTypes.func.isRequired,
-    version: PropTypes.string,
-    semver: PropTypes.object,
-};
+        this.handleInput = this.handleInput.bind(this);
+    }
 
-Version.defaultProps = {
-    version: '',
-    semver: null,
-};
+    handleInput({ target: { value: version } }) {
+        this.props.onVersion(version);
+    }
 
-export default Version;
+    shouldComponentUpdate(prevProps) {
+        return prevProps.version !== this.props.version;
+    }
+
+    render() {
+        const valid = this.props.semver !== null;
+
+        return (
+            <div className="form-group">
+                <label>Version</label>
+                <DebounceInput
+                    className={`form-control ${valid ? 'is-valid' : 'is-invalid'}`}
+                    type="text"
+                    placeholder="1.0.0"
+                    onChange={this.handleInput}
+                    value={this.props.version}
+                    debounceTimeout={150}
+                />
+            </div>
+        );
+    }
+}

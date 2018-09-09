@@ -1,38 +1,48 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DebounceInput } from 'react-debounce-input';
 
-const Constraint = props => {
-    const handleInput = ({ target: { value: constraint } }) => {
-        props.onConstraint(constraint);
+export default class Constraint extends Component {
+    static propTypes = {
+        onConstraint: PropTypes.func.isRequired,
+        constraint: PropTypes.string,
+        semver: PropTypes.object,
     };
 
-    const valid = props.semver !== null;
+    static defaultProps = {
+        constraint: '',
+        semver: null,
+    };
 
-    return (
-        <div className="form-group">
-            <label>Constraint</label>
-            <DebounceInput
-                className={`form-control ${valid ? 'is-valid' : 'is-invalid'}`}
-                type="text"
-                placeholder="^1.0.0"
-                onChange={handleInput}
-                value={props.constraint}
-                debounceTimeout={150}
-            />
-        </div>
-    );
-};
+    constructor() {
+        super();
 
-Constraint.propTypes = {
-    onConstraint: PropTypes.func.isRequired,
-    constraint: PropTypes.string,
-    semver: PropTypes.object,
-};
+        this.handleInput = this.handleInput.bind(this);
+    }
 
-Constraint.defaultProps = {
-    constraint: '',
-    semver: null,
-};
+    handleInput({ target: { value: constraint } }) {
+        this.props.onConstraint(constraint);
+    }
 
-export default Constraint;
+    shouldComponentUpdate(prevProps) {
+        return prevProps.constraint !== this.props.constraint;
+    }
+
+    render() {
+        const valid = this.props.semver !== null;
+
+        return (
+            <div className="form-group">
+                <label>Constraint</label>
+                <DebounceInput
+                    className={`form-control ${valid ? 'is-valid' : 'is-invalid'}`}
+                    type="text"
+                    placeholder="^1.0.0"
+                    onChange={this.handleInput}
+                    value={this.props.constraint}
+                    debounceTimeout={150}
+                />
+            </div>
+        );
+    }
+}

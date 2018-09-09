@@ -6,18 +6,20 @@ import Card from './Card';
 const ExplainVersion = props => {
     let satisfies = null;
 
-    if (props.constraint) {
+    if (props.constraint && props.constraint.semver) {
         satisfies = semver.satisfies(props.version.version, props.constraint.semver);
     }
 
     return (
         <Card className={`card ${satisfies === true && 'border-success'} ${satisfies === false && 'border-danger'}`}>
             <h5 className="card-title">{props.version.version}</h5>
-            {satisfies === true ? (
+            {satisfies === true && (
                 <h6 className="card-subtitle mb-3 text-success">
                     <code>{props.version.version}</code> satisfies constraint <code>{props.constraint.constraint}</code>
                 </h6>
-            ) : (
+            )}
+
+            {satisfies === false && (
                 <h6 className="card-subtitle mb-3 text-danger">
                     <code>{props.version.version}</code> does not satisfy constraint{' '}
                     <code>{props.constraint.constraint}</code>

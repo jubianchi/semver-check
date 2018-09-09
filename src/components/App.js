@@ -8,12 +8,15 @@ import Implementations from './Implementations';
 import WhyStrict from './WhyStrict';
 import WhyLoose from './WhyLoose';
 import Footer from './Footer';
+import Router from './Router';
 
 class App extends Component {
     render() {
         return (
             <div className="container">
                 <Header className="mb-3" />
+
+                <Router />
 
                 <Form className="mb-3" />
 

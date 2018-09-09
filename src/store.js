@@ -1,6 +1,9 @@
-import { createStore, combineReducers, compose } from 'redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
+import thunk from 'redux-thunk';
 import { VERSION, CONSTRAINT } from './actions';
 import semver from './semver';
+import history from './history';
 
 const initialState = {
     version: { version: '', semver: null },
@@ -40,10 +43,10 @@ const reducers = combineReducers({
     constraint,
 });
 
-const enhancers = [];
+const enhancers = [applyMiddleware(routerMiddleware(history), thunk)];
 
 if (process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION__) {
     enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__());
 }
 
-export default createStore(reducers, initialState, compose(...enhancers));
+export default createStore(connectRouter(history)(reducers), initialState, compose(...enhancers));

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Constraint from './Constraint';
 import Version from './Version';
-import { version, constraint } from '../actions';
+import { pushVersion, pushConstraint } from '../actions';
 
 export const Form = props => (
     <section className={`row ${props.className || ''}`}>
@@ -27,7 +27,7 @@ Form.propTypes = {
 export default connect(
     state => state,
     dispatch => ({
-        onConstraint: value => dispatch(constraint(value)),
-        onVersion: value => dispatch(version(value)),
+        onConstraint: value => dispatch(pushConstraint(value)),
+        onVersion: value => dispatch(pushVersion(value)),
     }),
 )(Form);
