@@ -39,7 +39,6 @@ const type = semver => {
 const ConstraintType = props => type(props.constraint.semver);
 
 ConstraintType.propTypes = {
-    className: PropTypes.string,
     constraint: PropTypes.object.isRequired,
 };
 

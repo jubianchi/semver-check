@@ -5,8 +5,8 @@ import WhatYouGet from './WhatYouGet';
 const ExplainConstraintCaret = props => (
     <Fragment>
         <p className="card-text">
-            <code>{props.constraint.constraint}</code> is a <strong>caret</strong> constraint. It means that it will
-            match <strong>several versions</strong>.
+            <code>{props.constraint}</code> is a <strong>caret</strong> constraint. It means that it will match{' '}
+            <strong>several versions</strong>.
         </p>
 
         <WhatYouGet minor patch />
@@ -14,8 +14,7 @@ const ExplainConstraintCaret = props => (
 );
 
 ExplainConstraintCaret.propTypes = {
-    className: PropTypes.string,
-    constraint: PropTypes.object.isRequired,
+    constraint: PropTypes.string.isRequired,
 };
 
 export default ExplainConstraintCaret;

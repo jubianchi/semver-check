@@ -32,21 +32,33 @@ const ExplainConstraint = props => {
                 </h6>
             )}
 
-            {props.constraint.semver.caret === true && <ExplainConstraintCaret constraint={props.constraint} />}
+            {props.constraint.semver.caret === true && (
+                <ExplainConstraintCaret constraint={props.constraint.constraint} />
+            )}
 
             {props.constraint.semver.tilde === true && <ExplainConstraintTilde constraint={props.constraint} />}
 
             {props.constraint.semver.pessimistic === true && (
-                <ExplainConstraintPessimistic constraint={props.constraint} />
+                <ExplainConstraintPessimistic constraint={props.constraint.constraint} />
             )}
 
-            {props.constraint.semver.strict === true && <ExplainConstraintStrict constraint={props.constraint} />}
+            {props.constraint.semver.strict === true && (
+                <ExplainConstraintStrict constraint={props.constraint.constraint} />
+            )}
 
-            {props.constraint.semver.hyphen === true && <ExplainConstraintHyphen constraint={props.constraint} />}
+            {props.constraint.semver.hyphen === true && (
+                <ExplainConstraintHyphen constraint={props.constraint.constraint} />
+            )}
 
             {props.constraint.semver.wildcard === true && <ExplainConstraintWildcard constraint={props.constraint} />}
 
-            {props.constraint.semver.range === true && <ExplainConstraintRange constraint={props.constraint} />}
+            {props.constraint.semver.range === true && (
+                <ExplainConstraintRange
+                    constraint={props.constraint.constraint}
+                    range={props.constraint.semver.raw}
+                    operator={props.constraint.semver.operator}
+                />
+            )}
         </Card>
     );
 };

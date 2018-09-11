@@ -5,8 +5,8 @@ import Alert from './Alert';
 const ExplainConstraintPessimistic = props => (
     <Fragment>
         <p className="card-text">
-            <code>{props.constraint.constraint}</code> is a <strong>pessimistic</strong> constraint. It means that it
-            will match <strong>several versions</strong>.
+            <code>{props.constraint}</code> is a <strong>pessimistic</strong> constraint. It means that it will match{' '}
+            <strong>several versions</strong>.
         </p>
 
         <Alert warning>
@@ -16,8 +16,7 @@ const ExplainConstraintPessimistic = props => (
 );
 
 ExplainConstraintPessimistic.propTypes = {
-    className: PropTypes.string,
-    constraint: PropTypes.object.isRequired,
+    constraint: PropTypes.string.isRequired,
 };
 
 export default ExplainConstraintPessimistic;

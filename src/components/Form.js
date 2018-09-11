@@ -8,10 +8,10 @@ import { pushVersion, pushConstraint } from '../actions';
 export const Form = props => (
     <section className={`row ${props.className || ''}`}>
         <div className="col-6">
-            <Constraint onConstraint={props.onConstraint} {...props.constraint} />
+            <Constraint onConstraint={props.onConstraint} constraint={props.constraint.constraint} semver={props.constraint.semver} />
         </div>
         <div className="col-6">
-            <Version onVersion={props.onVersion} {...props.version} />
+            <Version onVersion={props.onVersion} version={props.version.version} semver={props.version.semver} />
         </div>
     </section>
 );

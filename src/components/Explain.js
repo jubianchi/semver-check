@@ -6,8 +6,12 @@ import ExplainVersion from './ExplainVersion';
 
 export const Explain = props => (
     <section className={`row ${props.className || ''}`}>
-        <div className="col-6">{props.constraint.semver !== null && <ExplainConstraint {...props} />}</div>
-        <div className="col-6">{props.version.semver !== null && <ExplainVersion {...props} />}</div>
+        <div className="col-6">
+            {props.constraint.semver !== null && <ExplainConstraint constraint={props.constraint} />}
+        </div>
+        <div className="col-6">
+            {props.version.semver !== null && <ExplainVersion constraint={props.constraint} version={props.version} />}
+        </div>
     </section>
 );
 

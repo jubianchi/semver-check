@@ -5,8 +5,8 @@ import Alert from './Alert';
 const ExplainConstraintStrict = props => (
     <Fragment>
         <p className="card-text">
-            <code>{props.constraint.constraint}</code> is a <strong>strict</strong> constraint. It means that it will
-            match <strong>a single version</strong>.
+            <code>{props.constraint}</code> is a <strong>strict</strong> constraint. It means that it will match{' '}
+            <strong>a single version</strong>.
         </p>
 
         <Alert error>
@@ -16,8 +16,7 @@ const ExplainConstraintStrict = props => (
 );
 
 ExplainConstraintStrict.propTypes = {
-    className: PropTypes.string,
-    constraint: PropTypes.object.isRequired,
+    constraint: PropTypes.string.isRequired,
 };
 
 export default ExplainConstraintStrict;

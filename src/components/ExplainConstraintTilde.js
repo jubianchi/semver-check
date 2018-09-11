@@ -36,7 +36,6 @@ const ExplainConstraintTilde = props => (
 );
 
 ExplainConstraintTilde.propTypes = {
-    className: PropTypes.string,
     constraint: PropTypes.object.isRequired,
 };
 

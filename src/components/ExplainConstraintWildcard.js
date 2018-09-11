@@ -13,11 +13,7 @@ const ExplainConstraintWildcard = props => (
         <WhatYouGet
             major={props.constraint.semver.major === '*'}
             minor={props.constraint.semver.major === '*' || props.constraint.semver.minor === '*'}
-            patch={
-                props.constraint.semver.major === '*' ||
-                props.constraint.semver.minor === '*' ||
-                props.constraint.semver.patch === '*'
-            }
+            patch
         />
 
         {props.constraint.semver.major === '*' && (
@@ -30,7 +26,6 @@ const ExplainConstraintWildcard = props => (
 );
 
 ExplainConstraintWildcard.propTypes = {
-    className: PropTypes.string,
     constraint: PropTypes.object.isRequired,
 };
 
