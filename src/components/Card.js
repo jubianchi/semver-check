@@ -1,17 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React, { type Node } from 'react';
 import './Card.css';
 
-const Card = props => (
+type CardProps = {
+    className: string,
+    children: Node,
+};
+
+const Card = (props: CardProps): Node => (
     <div className={`card ${props.className}`}>
         <div className="card-body">{props.children}</div>
     </div>
 );
-
-Card.propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-};
 
 Card.defaultProps = {
     className: '',

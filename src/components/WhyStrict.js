@@ -1,7 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
 
-const WhyStrict = props => (
+import React, { type Node } from 'react';
+
+type WhyStrictProps = {
+    className: string,
+};
+
+const WhyStrict = (props: WhyStrictProps): Node => (
     <div className={`row ${props.className}`}>
         <div className="col-12">
             <h2 id="why-strict">WHY USING STRICT CONSTRAINT IS BAD?</h2>
@@ -51,10 +56,6 @@ const WhyStrict = props => (
         </div>
     </div>
 );
-
-WhyStrict.propTypes = {
-    className: PropTypes.string,
-};
 
 WhyStrict.defaultProps = {
     className: '',

@@ -1,14 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { type Node, type ComponentType } from 'react';
 import { connect } from 'react-redux';
 import Constraint from './Constraint';
 import Version from './Version';
 import { pushVersion, pushConstraint } from '../actions';
 
-export const Form = props => (
+type FormProps = {
+    className: string,
+};
+
+type ConnectedFormProps = {
+    onConstraint: (constraint: string) => void,
+    onVersion: (version: string) => void,
+    constraint: Object,
+    version: Object,
+};
+
+export const Form = (props: FormProps & ConnectedFormProps): Node => (
     <section className={`row ${props.className || ''}`}>
         <div className="col-6">
-            <Constraint onConstraint={props.onConstraint} constraint={props.constraint.constraint} semver={props.constraint.semver} />
+            <Constraint
+                onConstraint={props.onConstraint}
+                constraint={props.constraint.constraint}
+                semver={props.constraint.semver}
+            />
         </div>
         <div className="col-6">
             <Version onVersion={props.onVersion} version={props.version.version} semver={props.version.semver} />
@@ -16,18 +30,16 @@ export const Form = props => (
     </section>
 );
 
-Form.propTypes = {
-    className: PropTypes.string,
-    onConstraint: PropTypes.func.isRequired,
-    onVersion: PropTypes.func.isRequired,
-    constraint: PropTypes.object,
-    version: PropTypes.object,
+Form.defaultProps = {
+    className: '',
+    constraint: null,
+    version: null,
 };
 
-export default connect(
+export default (connect(
     state => state,
     dispatch => ({
         onConstraint: value => dispatch(pushConstraint(value)),
         onVersion: value => dispatch(pushVersion(value)),
     }),
-)(Form);
+)(Form): ComponentType<FormProps>);

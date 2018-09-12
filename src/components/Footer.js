@@ -1,8 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React, { type Node } from 'react';
 import './Footer.css';
 
-const Footer = props => (
+type FooterProps = {
+    className: string,
+};
+
+const Footer = (props: FooterProps): Node => (
     <footer className="bg-light px-3 pt-3">
         <div className="row">
             <div className="col">
@@ -44,10 +49,6 @@ const Footer = props => (
         </div>
     </footer>
 );
-
-Footer.propTypes = {
-    className: PropTypes.string,
-};
 
 Footer.defaultProps = {
     className: '',

@@ -1,11 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React, { type Node, type ComponentType } from 'react';
 import { connect } from 'react-redux';
 import ExplainConstraint from './ExplainConstraint';
 import ExplainVersion from './ExplainVersion';
 
-export const Explain = props => (
-    <section className={`row ${props.className || ''}`}>
+type ExplainProps = {
+    className: string,
+};
+
+type ConnectedExplainProps = {
+    constraint: Object,
+    version: Object,
+};
+
+export const Explain = (props: ExplainProps & ConnectedExplainProps): Node => (
+    <section className={`row ${props.className}`}>
         <div className="col-6">
             {props.constraint.semver !== null && <ExplainConstraint constraint={props.constraint} />}
         </div>
@@ -15,10 +25,8 @@ export const Explain = props => (
     </section>
 );
 
-Explain.propTypes = {
-    className: PropTypes.string,
-    constraint: PropTypes.object,
-    version: PropTypes.object,
+Explain.defaultProps = {
+    className: '',
 };
 
-export default connect(state => state)(Explain);
+export default (connect(state => state)(Explain): ComponentType<ExplainProps>);

@@ -1,9 +1,14 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React, { Fragment, type Node } from 'react';
 import Alert from './Alert';
 import WhatYouGet from './WhatYouGet';
 
-const ExplainConstraintWildcard = props => (
+type ExplainConstraintWildcardProps = {
+    constraint: Object,
+};
+
+const ExplainConstraintWildcard = (props: ExplainConstraintWildcardProps): Node => (
     <Fragment>
         <p className="card-text">
             <code>{props.constraint.constraint}</code> is a <strong>x-range</strong> constraint. It means that it will
@@ -24,9 +29,5 @@ const ExplainConstraintWildcard = props => (
         )}
     </Fragment>
 );
-
-ExplainConstraintWildcard.propTypes = {
-    constraint: PropTypes.object.isRequired,
-};
 
 export default ExplainConstraintWildcard;

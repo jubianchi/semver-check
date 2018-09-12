@@ -1,10 +1,19 @@
+// @flow
+
 import { Component } from 'react';
 import connect from 'react-redux/es/connect/connect';
 import { constraint, version } from '../actions';
 import { Route, Switch } from 'react-router-dom';
 import React from 'react';
 
-class Router extends Component {
+type ConnectedRouterProps = {
+    state: Object,
+    router: Object,
+    onRouterConstraint: (constraint: string) => void,
+    onRouterVersion: (version: string) => void,
+};
+
+class Router extends Component<ConnectedRouterProps> {
     updateHistory() {
         const { constraint: stateConstraint, version: stateVersion } = this.props.state;
         const { constraint: routerConstraint, version: routerVersion } = this.props.router;

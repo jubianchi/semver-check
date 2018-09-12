@@ -1,9 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React, { type Node } from 'react';
 import semver from '../semver';
 import Card from './Card';
 
-const ExplainVersion = props => {
+type ExplainVersionProps = {
+    constraint: Object,
+    version: Object,
+};
+
+const ExplainVersion = (props: ExplainVersionProps): Node => {
     let satisfies = null;
 
     if (props.constraint && props.constraint.semver) {
@@ -11,7 +17,11 @@ const ExplainVersion = props => {
     }
 
     return (
-        <Card className={`card ${satisfies === true && 'border-success'} ${satisfies === false && 'border-danger'}`}>
+        <Card
+            className={`card ${satisfies === true ? 'border-success' : ''} ${
+                satisfies === false ? 'border-danger' : ''
+            }`}
+        >
             <h5 className="card-title">{props.version.version}</h5>
             {satisfies === true && (
                 <h6 className="card-subtitle mb-3 text-success">
@@ -38,11 +48,6 @@ const ExplainVersion = props => {
             </ul>
         </Card>
     );
-};
-
-ExplainVersion.propTypes = {
-    version: PropTypes.object.isRequired,
-    constraint: PropTypes.object,
 };
 
 ExplainVersion.defaultProps = {

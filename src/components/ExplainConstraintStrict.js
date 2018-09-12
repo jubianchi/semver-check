@@ -1,8 +1,13 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React, { Fragment, type Node } from 'react';
 import Alert from './Alert';
 
-const ExplainConstraintStrict = props => (
+type ExplainConstraintStrictProps = {
+    constraint: string,
+};
+
+const ExplainConstraintStrict = (props: ExplainConstraintStrictProps): Node => (
     <Fragment>
         <p className="card-text">
             <code>{props.constraint}</code> is a <strong>strict</strong> constraint. It means that it will match{' '}
@@ -14,9 +19,5 @@ const ExplainConstraintStrict = props => (
         </Alert>
     </Fragment>
 );
-
-ExplainConstraintStrict.propTypes = {
-    constraint: PropTypes.string.isRequired,
-};
 
 export default ExplainConstraintStrict;

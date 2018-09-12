@@ -1,8 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React, { type Node } from 'react';
 import Quote from './Quote';
 
-const WhyLoose = props => (
+type WhyLooseProps = {
+    className: string,
+};
+
+const WhyLoose = (props: WhyLooseProps): Node => (
     <div className={`row ${props.className}`}>
         <div className="col-12">
             <h2 id="why-loose">WHY USING LOOSE CONSTRAINT IS BAD?</h2>
@@ -36,10 +41,6 @@ const WhyLoose = props => (
         </div>
     </div>
 );
-
-WhyLoose.propTypes = {
-    className: PropTypes.string,
-};
 
 WhyLoose.defaultProps = {
     className: '',

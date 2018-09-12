@@ -1,34 +1,29 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React, { Component, type Node } from 'react';
 import { DebounceInput } from 'react-debounce-input';
 
-export default class Version extends Component {
-    static propTypes = {
-        onVersion: PropTypes.func.isRequired,
-        version: PropTypes.string,
-        semver: PropTypes.object,
-    };
+type VersionProps = {
+    onVersion: (version: string) => void,
+    version: string,
+    semver: Object,
+};
 
+export default class Version extends Component<VersionProps> {
     static defaultProps = {
         version: '',
         semver: null,
     };
 
-    constructor() {
-        super();
+    handleInput = ({ target }: { target: HTMLInputElement }): void => {
+        this.props.onVersion(target.value);
+    };
 
-        this.handleInput = this.handleInput.bind(this);
-    }
-
-    handleInput({ target: { value: version } }) {
-        this.props.onVersion(version);
-    }
-
-    shouldComponentUpdate(prevProps) {
+    shouldComponentUpdate(prevProps: VersionProps): boolean {
         return prevProps.version !== this.props.version;
     }
 
-    render() {
+    render(): Node {
         const valid = this.props.semver !== null;
 
         return (

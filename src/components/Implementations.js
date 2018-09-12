@@ -1,7 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
 
-const Implementations = props => (
+import React, { type Node } from 'react';
+
+type ImplementationsProps = {
+    className: string,
+};
+
+const Implementations = (props: ImplementationsProps): Node => (
     <div className={`row ${props.className}`}>
         <div className="col-12">
             <h2>SEMVER CONSTRAINT IMPLEMENTATIONS</h2>
@@ -37,10 +42,6 @@ const Implementations = props => (
         </div>
     </div>
 );
-
-Implementations.propTypes = {
-    className: PropTypes.string,
-};
 
 Implementations.defaultProps = {
     className: '',

@@ -1,9 +1,14 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React, { Fragment, type Node } from 'react';
 import WhatYouGet from './WhatYouGet';
 import Alert from './Alert';
 
-const ExplainConstraintTilde = props => (
+type ExplainConstraintTildeProps = {
+    constraint: Object,
+};
+
+const ExplainConstraintTilde = (props: ExplainConstraintTildeProps): Node => (
     <Fragment>
         <p className="card-text">
             <code>{props.constraint.constraint}</code> is a <strong>tilde</strong> constraint. It means that it will
@@ -34,9 +39,5 @@ const ExplainConstraintTilde = props => (
             )}
     </Fragment>
 );
-
-ExplainConstraintTilde.propTypes = {
-    constraint: PropTypes.object.isRequired,
-};
 
 export default ExplainConstraintTilde;

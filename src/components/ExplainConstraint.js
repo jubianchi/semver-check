@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { type Node } from 'react';
 import ExplainConstraintRange from './ExplainConstraintRange';
 import ConstraintType from './ConstraintType';
 import ExplainConstraintCaret from './ExplainConstraintCaret';
@@ -10,7 +9,11 @@ import ExplainConstraintWildcard from './ExplainConstraintWildcard';
 import ExplainConstraintTilde from './ExplainConstraintTilde';
 import Card from './Card';
 
-const ExplainConstraint = props => {
+type ExplainConstraintProps = {
+    constraint: Object,
+};
+
+export default (props: ExplainConstraintProps): Node => {
     return (
         <Card
             className={`card ${props.constraint.semver.strict === true && 'border-danger'} ${props.constraint.semver
@@ -62,9 +65,3 @@ const ExplainConstraint = props => {
         </Card>
     );
 };
-
-ExplainConstraint.propTypes = {
-    constraint: PropTypes.object.isRequired,
-};
-
-export default ExplainConstraint;

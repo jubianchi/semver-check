@@ -1,8 +1,11 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment, type Node } from 'react';
 import Alert from './Alert';
 
-const ExplainConstraintPessimistic = props => (
+type ExplainConstraintPessimisticProps = {
+    constraint: Object,
+};
+
+const ExplainConstraintPessimistic = (props: ExplainConstraintPessimisticProps): Node => (
     <Fragment>
         <p className="card-text">
             <code>{props.constraint}</code> is a <strong>pessimistic</strong> constraint. It means that it will match{' '}
@@ -14,9 +17,5 @@ const ExplainConstraintPessimistic = props => (
         </Alert>
     </Fragment>
 );
-
-ExplainConstraintPessimistic.propTypes = {
-    constraint: PropTypes.string.isRequired,
-};
 
 export default ExplainConstraintPessimistic;

@@ -1,8 +1,15 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React, { Fragment, type Node } from 'react';
 import Alert from './Alert';
 
-const ExplainConstraintRange = props => {
+type ExplainConstraintRangeProps = {
+    constraint: Object,
+    range: string,
+    operator: string,
+};
+
+const ExplainConstraintRange = (props: ExplainConstraintRangeProps): Node => {
     const bound = props.range.split(' ').length > 1;
 
     return (
@@ -28,10 +35,8 @@ const ExplainConstraintRange = props => {
     );
 };
 
-ExplainConstraintRange.propTypes = {
-    constraint: PropTypes.string.isRequired,
-    range: PropTypes.string.isRequired,
-    operator: PropTypes.string,
+ExplainConstraintRange.defaultProps = {
+    operator: null,
 };
 
 export default ExplainConstraintRange;

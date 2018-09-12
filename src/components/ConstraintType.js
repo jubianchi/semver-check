@@ -1,6 +1,8 @@
-import PropTypes from 'prop-types';
+// @flow
 
-const type = semver => {
+import { type Node } from 'react';
+
+const type = (semver: Object): string => {
     if (semver.caret) {
         return 'Caret';
     }
@@ -36,10 +38,8 @@ const type = semver => {
     return 'Weird';
 };
 
-const ConstraintType = props => type(props.constraint.semver);
-
-ConstraintType.propTypes = {
-    constraint: PropTypes.object.isRequired,
+type ConstraintTypeProps = {
+    constraint: Object,
 };
 
-export default ConstraintType;
+export default (props: ConstraintTypeProps): Node => type(props.constraint.semver);

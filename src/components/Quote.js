@@ -1,8 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React, { type Node } from 'react';
 import './Quote.css';
 
-const Quote = props => (
+type QuoteProps = {
+    className: string,
+    author: string,
+    source: string,
+    children: Node,
+};
+
+const Quote = (props: QuoteProps): Node => (
     <blockquote className={`blockquote pl-3 ${props.className}`}>
         {props.children}
 
@@ -11,13 +19,6 @@ const Quote = props => (
         </footer>
     </blockquote>
 );
-
-Quote.propTypes = {
-    className: PropTypes.string,
-    author: PropTypes.string.isRequired,
-    source: PropTypes.string.isRequired,
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-};
 
 Quote.defaultProps = {
     className: '',

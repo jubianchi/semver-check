@@ -1,20 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
 
-const Alert = props => {
+import React, { type Node } from 'react';
+
+type AlertProps = {
+    className: string,
+    warning: boolean,
+    error: boolean,
+    children: Node,
+};
+
+const Alert = (props: AlertProps): Node => {
     const type = props.warning === true ? 'warning' : props.error === true ? 'danger' : 'info';
 
     return <div className={`alert alert-${type} ${props.className}`}>{props.children}</div>;
 };
 
-Alert.propTypes = {
-    className: PropTypes.string,
-    warning: PropTypes.bool,
-    error: PropTypes.bool,
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-};
-
 Alert.defaultProps = {
+    className: '',
     warning: false,
     error: false,
 };

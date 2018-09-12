@@ -1,8 +1,13 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React, { Fragment, type Node } from 'react';
 import WhatYouGet from './WhatYouGet';
 
-const ExplainConstraintCaret = props => (
+type ExplainConstraintCaretProps = {
+    constraint: Object,
+};
+
+const ExplainConstraintCaret = (props: ExplainConstraintCaretProps): Node => (
     <Fragment>
         <p className="card-text">
             <code>{props.constraint}</code> is a <strong>caret</strong> constraint. It means that it will match{' '}
@@ -12,9 +17,5 @@ const ExplainConstraintCaret = props => (
         <WhatYouGet minor patch />
     </Fragment>
 );
-
-ExplainConstraintCaret.propTypes = {
-    constraint: PropTypes.string.isRequired,
-};
 
 export default ExplainConstraintCaret;

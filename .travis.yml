@@ -23,6 +23,7 @@ before_script:
 
 script:
     - yarn cs -l
+    - yarn flow
     - yarn test
     - yarn build
 

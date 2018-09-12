@@ -1,8 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React, { type Node } from 'react';
 import Quote from './Quote';
 
-const Why = props => (
+type WhyProps = {
+    className: string,
+};
+
+const Why = (props: WhyProps): Node => (
     <div className={`row ${props.className}`}>
         <div className="col-12">
             <h2>SEMVER CHECKER... WHY?</h2>
@@ -28,10 +33,6 @@ const Why = props => (
         </div>
     </div>
 );
-
-Why.propTypes = {
-    className: PropTypes.string,
-};
 
 Why.defaultProps = {
     className: '',

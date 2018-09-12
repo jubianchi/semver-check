@@ -1,34 +1,29 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import React, { Component, type Node } from 'react';
 import { DebounceInput } from 'react-debounce-input';
 
-export default class Constraint extends Component {
-    static propTypes = {
-        onConstraint: PropTypes.func.isRequired,
-        constraint: PropTypes.string,
-        semver: PropTypes.object,
-    };
+type ConstraintProp = {
+    onConstraint: (constraint: string) => void,
+    constraint: string,
+    semver: Object,
+};
 
+export default class Constraint extends Component<ConstraintProp> {
     static defaultProps = {
         constraint: '',
         semver: null,
     };
 
-    constructor() {
-        super();
+    handleInput = ({ target }: { target: HTMLInputElement }): void => {
+        this.props.onConstraint(target.value);
+    };
 
-        this.handleInput = this.handleInput.bind(this);
-    }
-
-    handleInput({ target: { value: constraint } }) {
-        this.props.onConstraint(constraint);
-    }
-
-    shouldComponentUpdate(prevProps) {
+    shouldComponentUpdate(prevProps: ConstraintProp): boolean {
         return prevProps.constraint !== this.props.constraint;
     }
 
-    render() {
+    render(): Node {
         const valid = this.props.semver !== null;
 
         return (

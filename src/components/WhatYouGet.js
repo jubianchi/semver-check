@@ -1,7 +1,14 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+// @flow
 
-const WhatYouGet = props => {
+import React, { Fragment, type Node } from 'react';
+
+type WhatYouGetProps = {
+    major: boolean,
+    minor: boolean,
+    patch: boolean,
+};
+
+const WhatYouGet = (props: WhatYouGetProps): Node => {
     if (props.major === false && props.minor === false && props.patch === false) {
         return null;
     }
@@ -29,12 +36,6 @@ const WhatYouGet = props => {
             </ul>
         </Fragment>
     );
-};
-
-WhatYouGet.propTypes = {
-    major: PropTypes.bool,
-    minor: PropTypes.bool,
-    patch: PropTypes.bool,
 };
 
 WhatYouGet.defaultProps = {
