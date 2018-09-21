@@ -21,7 +21,7 @@ export default class Constraint extends Component {
     }
 
     handleInput({ target: { value: constraint } }) {
-        this.props.onConstraint(constraint);
+        this.props.onConstraint({ constraint });
     }
 
     shouldComponentUpdate(prevProps) {

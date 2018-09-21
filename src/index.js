@@ -1,21 +1,16 @@
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom'
 import ReactGA from 'react-ga';
-import { ConnectedRouter } from 'connected-react-router';
 import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
-import store from './store';
-import history from './history';
 
 ReactDOM.render(
     <StrictMode>
-        <Provider store={store}>
-            <ConnectedRouter history={history}>
-                <App />
-            </ConnectedRouter>
-        </Provider>
+        <Router basename="/semver-check">
+            <App />
+        </Router>
     </StrictMode>,
     document.getElementById('root'),
 );

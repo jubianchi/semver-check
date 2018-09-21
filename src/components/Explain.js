@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import withSemver from '../hoc/withSemver';
 import ExplainConstraint from './ExplainConstraint';
 import ExplainVersion from './ExplainVersion';
 
-export const Explain = props => (
-    <section className={`row ${props.className || ''}`}>
-        <div className="col-6">{props.constraint.semver !== null && <ExplainConstraint {...props} />}</div>
-        <div className="col-6">{props.version.semver !== null && <ExplainVersion {...props} />}</div>
-    </section>
-);
+export class Explain extends PureComponent {
+  propTypes = {
+      className: PropTypes.string,
+      semver: PropTypes.shape({
+        constraint: PropTypes.object.isRequired,
+        version: PropTypes.object.isRequired,
+      }).isRequired,
+  }
 
-Explain.propTypes = {
-    className: PropTypes.string,
-    constraint: PropTypes.object,
-    version: PropTypes.object,
-};
+  render() {
+    const { className, semver: { constraint, version } } = this.props;
 
-export default connect(state => state)(Explain);
+    return (
+        <section className={`row ${className || ''}`}>
+            <div className="col-6">{constraint.semver !== null && <ExplainConstraint constraint={constraint} />}</div>
+            <div className="col-6">{version.semver !== null && <ExplainVersion version={version} />}</div>
+        </section>
+    );
+  }
+}
+
+export default withSemver()(Explain);

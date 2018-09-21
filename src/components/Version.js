@@ -21,7 +21,7 @@ export default class Version extends Component {
     }
 
     handleInput({ target: { value: version } }) {
-        this.props.onVersion(version);
+        this.props.onVersion({ version });
     }
 
     shouldComponentUpdate(prevProps) {
