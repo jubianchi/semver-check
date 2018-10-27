@@ -50,7 +50,7 @@ export default {
         range
             .trim()
             .replace(/v(\d+\.)/gi, '$1')
-            .replace(/(?<![><])=(\d+\.)/g, '$1'),
+            .replace(/(^|\s+|\|\|)([^><]?)=(\d+\.)/g, '$1$2$3'),
     coerceRange: range => {
         if (!range && range !== 0) {
             return null;
