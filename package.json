@@ -14,7 +14,7 @@
     "connected-react-router": "^4.4.1",
     "history": "^4.7.2",
     "prop-types": "^15.6.2",
-    "react": "^16.4.2",
+    "react": "^16.6.3",
     "react-debounce-input": "^3.2.0",
     "react-dom": "^16.4.2",
     "react-ga": "^2.5.3",
