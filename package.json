@@ -16,7 +16,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-debounce-input": "^3.2.0",
-    "react-dom": "^16.4.2",
+    "react-dom": "^16.6.3",
     "react-ga": "^2.5.3",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
