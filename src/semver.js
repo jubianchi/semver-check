@@ -1,6 +1,6 @@
 import semver from 'semver';
 
-const NR = '(?:0|[1-9]+)';
+const NR = '(?:0|[1-9])[0-9]*';
 const BUILD = NR;
 const PRE = `[0-9a-zA-Z\\-]+(?:\\.${NR})?`;
 const QUALIFIER = `-(?:${PRE})?(?:\\+${BUILD})?`;
