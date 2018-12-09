@@ -77,6 +77,19 @@ describe('semver', () => {
             });
         });
 
+        describe('types', () => {
+            const rangeAndType = {
+                '>=8.10.0': 'range',
+                '>=8.11.0': 'range',
+            };
+
+            Object.keys(rangeAndType).forEach(range => {
+                it(`should compute type for ${range}`, () => {
+                    expect(semver.coerceRange(range)[rangeAndType[range]]).toBe(true);
+                });
+            });
+        });
+
         describe('operators', () => {
             const rangeAndOperator = {
                 '1.0.0': '=',
