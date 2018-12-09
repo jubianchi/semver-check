@@ -5,7 +5,7 @@ import ReactGA from 'react-ga';
 import { ConnectedRouter } from 'connected-react-router';
 import './index.css';
 import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
+import * as serviceWorker from './serviceWorker';
 import store from './store';
 import history from './history';
 
@@ -25,6 +25,8 @@ if (process.env.NODE_ENV !== 'production') {
         debug: false,
     });
     ReactGA.ga('send', 'pageview');
-}
 
-registerServiceWorker();
+    serviceWorker.unregister();
+} else {
+    serviceWorker.register();
+}
