@@ -9,6 +9,7 @@ import WhyStrict from './WhyStrict';
 import WhyLoose from './WhyLoose';
 import Footer from './Footer';
 import Router from './Router';
+import CopyUrl from "./CopyUrl";
 
 class App extends Component {
     render() {
@@ -21,6 +22,8 @@ class App extends Component {
                 <Form className="mb-3" />
 
                 <Explain className="mb-3" />
+
+                <CopyUrl className="mb-3" />
 
                 <Why className="mb-3" />
 

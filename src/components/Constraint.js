@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { DebounceInput } from 'react-debounce-input';
 
@@ -32,17 +32,26 @@ export default class Constraint extends Component {
         const valid = this.props.semver !== null;
 
         return (
-            <div className="form-group">
-                <label>Constraint</label>
-                <DebounceInput
-                    className={`form-control ${valid ? 'is-valid' : 'is-invalid'}`}
-                    type="text"
-                    placeholder="^1.0.0"
-                    onChange={this.handleInput}
-                    value={this.props.constraint}
-                    debounceTimeout={150}
-                />
-            </div>
+            <Fragment>
+                <div className="input-group">
+                    <div className="input-group-prepend">
+                        <span className={`input-group-text text-light ${valid ? 'bg-success border-success' : 'bg-danger border-danger'}`}>Constraint</span>
+                    </div>
+                    <DebounceInput
+                        className={`form-control ${valid ? 'is-valid' : 'is-invalid'}`}
+                        type="text"
+                        placeholder="^1.0.0"
+                        onChange={this.handleInput}
+                        value={this.props.constraint}
+                        debounceTimeout={150}
+                    />
+                </div>
+                { valid || (
+                    <small className="form-text text-danger">
+                        This constraint is invalid.
+                    </small>
+                )}
+            </Fragment>
         );
     }
 }
