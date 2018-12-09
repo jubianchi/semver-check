@@ -3,7 +3,7 @@
   "description": "A dummy webapp to check your semver compat",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "/foo",
   "repository": {
     "type": "git",
     "url": "https://github.com/jubianchi/semver-check"
