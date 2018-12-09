@@ -24,7 +24,7 @@ before_script:
 script:
     - yarn cs -l
     - yarn test
-    - PUBLIC_URL=/semver-check yarn build
+    - yarn build
 
 after_script:
     - greenkeeper-lockfile-upload
