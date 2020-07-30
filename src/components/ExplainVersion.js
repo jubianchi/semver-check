@@ -7,7 +7,8 @@ const ExplainVersion = props => {
     let satisfies = null;
 
     if (props.constraint && props.constraint.semver) {
-        satisfies = semver.satisfies(props.version.version, props.constraint.semver);
+        console.log(props.version);
+        satisfies = semver.satisfies(props.version.semver, props.constraint.semver);
     }
 
     return (

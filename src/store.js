@@ -12,12 +12,12 @@ const initialState = {
 
 const version = (state = { version: '', semver: null }, action) => {
     if (action.type === VERSION) {
-        const cleaned = semver.clean(action.version);
+        const cleaned = semver.coerce(action.version);
 
         return {
             ...state,
             version: action.version,
-            semver: semver.coerce(cleaned),
+            semver: cleaned,
         };
     }
 
