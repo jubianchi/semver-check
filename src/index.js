@@ -21,12 +21,12 @@ ReactDOM.render(
 );
 
 if (process.env.NODE_ENV !== 'production') {
+    serviceWorker.unregister();
+} else {
     ReactGA.initialize('UA-56445984-1', {
         debug: false,
     });
     ReactGA.ga('send', 'pageview');
 
-    serviceWorker.unregister();
-} else {
     serviceWorker.register();
 }
