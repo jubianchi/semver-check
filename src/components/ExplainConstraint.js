@@ -13,12 +13,13 @@ import Card from './Card';
 const ExplainConstraint = props => {
     return (
         <Card
-            className={`card ${props.constraint.semver.strict === true && 'border-danger'} ${props.constraint.semver
-                .tilde === true &&
+            className={`card ${props.constraint.semver.strict === true && 'border-danger'} ${
+                props.constraint.semver.tilde === true &&
                 props.constraint.semver.major &&
                 props.constraint.semver.minor &&
                 !props.constraint.semver.patch &&
-                'border-warning'}`}
+                'border-warning'
+            }`}
         >
             <h5 className="card-title">
                 <ConstraintType constraint={props.constraint} /> constraint

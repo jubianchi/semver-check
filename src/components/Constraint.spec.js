@@ -63,10 +63,7 @@ describe('Constraint', () => {
 
         var node = shallow(<Constraint {...props} />);
 
-        node.find(DebounceInput)
-            .shallow()
-            .find('input')
-            .simulate('change', event);
+        node.find(DebounceInput).shallow().find('input').simulate('change', event);
 
         setTimeout(() => {
             expect(props.onConstraint).toHaveBeenCalled();

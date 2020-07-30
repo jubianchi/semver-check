@@ -120,7 +120,7 @@ describe('semver', () => {
             });
         });
 
-        describe('satisifes', function() {
+        describe('satisifes', function () {
             const ranges = {
                 '1.2.3': ['1.2.3'],
                 '1.2.3 - 2.3.4': ['1.2.3', '2.0.0', '2.3.4'],
@@ -160,7 +160,7 @@ describe('semver', () => {
             });
         });
 
-        describe('does not satisfy', function() {
+        describe('does not satisfy', function () {
             const ranges = {
                 '1.2.3': ['0.0.1', '1.2.5', '2.0.0'],
                 '1.2.3 - 2.3.4': ['0.0.1', '1.0.0', '2.5.0', '3.0.0'],

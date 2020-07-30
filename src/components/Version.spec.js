@@ -64,10 +64,7 @@ describe('Version', () => {
 
         var node = shallow(<Version {...props} />);
 
-        node.find(DebounceInput)
-            .shallow()
-            .find('input')
-            .simulate('change', event);
+        node.find(DebounceInput).shallow().find('input').simulate('change', event);
 
         setTimeout(() => {
             expect(props.onVersion).toHaveBeenCalled();
