@@ -1,16 +1,26 @@
 {
-  "main.css": "./static/css/main.25c9d666.chunk.css",
-  "main.js": "./static/js/main.a96a6df0.chunk.js",
-  "main.js.map": "./static/js/main.a96a6df0.chunk.js.map",
-  "static/css/1.4a12c0ac.chunk.css": "./static/css/1.4a12c0ac.chunk.css",
-  "static/js/1.5b3eb265.chunk.js": "./static/js/1.5b3eb265.chunk.js",
-  "static/js/1.5b3eb265.chunk.js.map": "./static/js/1.5b3eb265.chunk.js.map",
-  "runtime~main.js": "./static/js/runtime~main.4a686d48.js",
-  "runtime~main.js.map": "./static/js/runtime~main.4a686d48.js.map",
-  "static/media/octicons.css": "./static/media/octicons.de59a972.woff2",
-  "static/css/main.25c9d666.chunk.css.map": "./static/css/main.25c9d666.chunk.css.map",
-  "static/css/1.4a12c0ac.chunk.css.map": "./static/css/1.4a12c0ac.chunk.css.map",
-  "index.html": "./index.html",
-  "precache-manifest.f297d21f0afe87f978778916681ce403.js": "./precache-manifest.f297d21f0afe87f978778916681ce403.js",
-  "service-worker.js": "./service-worker.js"
+  "files": {
+    "main.css": "./static/css/main.0f67c94c.chunk.css",
+    "main.js": "./static/js/main.d4538d0f.chunk.js",
+    "main.js.map": "./static/js/main.d4538d0f.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.cef4ef88.js",
+    "runtime-main.js.map": "./static/js/runtime-main.cef4ef88.js.map",
+    "static/css/2.6330210c.chunk.css": "./static/css/2.6330210c.chunk.css",
+    "static/js/2.76beeaec.chunk.js": "./static/js/2.76beeaec.chunk.js",
+    "static/js/2.76beeaec.chunk.js.map": "./static/js/2.76beeaec.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.7cf439065b3208b5abc27cd8f50468f4.js": "./precache-manifest.7cf439065b3208b5abc27cd8f50468f4.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/2.6330210c.chunk.css.map": "./static/css/2.6330210c.chunk.css.map",
+    "static/css/main.0f67c94c.chunk.css.map": "./static/css/main.0f67c94c.chunk.css.map",
+    "static/js/2.76beeaec.chunk.js.LICENSE.txt": "./static/js/2.76beeaec.chunk.js.LICENSE.txt",
+    "static/media/octicons.css": "./static/media/octicons.ee5b1bee.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cef4ef88.js",
+    "static/css/2.6330210c.chunk.css",
+    "static/js/2.76beeaec.chunk.js",
+    "static/css/main.0f67c94c.chunk.css",
+    "static/js/main.d4538d0f.chunk.js"
+  ]
 }
