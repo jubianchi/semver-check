@@ -1,0 +1,80 @@
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+/*!
+ * clipboard.js v2.0.4
+ * https://zenorocha.github.io/clipboard.js
+ * 
+ * Licensed MIT © Zeno Rocha
+ */
+
+/*! clipboard */
+
+/*! exports provided: default */
+
+/*! no static exports found */
+
+/*! prop-types */
+
+/*! react */
+
+/*! react-dom */
+
+/*!******************!*\
+        !*** ./index.js ***!
+        \******************/
+
+/*!**************************************************************************************!*\
+        !*** external {"root":"React","amd":"react","commonjs":"react","commonjs2":"react"} ***!
+        \**************************************************************************************/
+
+/*!*****************************************************************************************************!*\
+        !*** external {"root":"ReactDOM","amd":"react-dom","commonjs":"react-dom","commonjs2":"react-dom"} ***!
+        \*****************************************************************************************************/
+
+/*!********************************************************************************************************!*\
+        !*** external {"root":"ClipboardJS","amd":"clipboard","commonjs":"clipboard","commonjs2":"clipboard"} ***!
+        \********************************************************************************************************/
+
+/*!*********************************************************************************************************!*\
+        !*** external {"root":"PropTypes","amd":"prop-types","commonjs":"prop-types","commonjs2":"prop-types"} ***!
+        \*********************************************************************************************************/
+
+/** @license React v0.19.1
+ * scheduler.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.13.1
+ * react-dom.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.13.1
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.13.1
+ * react.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
