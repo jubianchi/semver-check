@@ -154,7 +154,7 @@ describe('semver', () => {
                     it(version + ' should satisfy range ' + range, () => {
                         const constraint = semver.coerceRange(range);
 
-                        expect(semver.satisfies(version, constraint)).toBe(true);
+                        expect(semver.satisfies(semver.coerce(version), constraint)).toBe(true);
                     });
                 });
             });
@@ -190,7 +190,7 @@ describe('semver', () => {
                     it(version + ' should not satisfy range ' + range, () => {
                         const constraint = semver.coerceRange(range);
 
-                        expect(semver.satisfies(version, constraint)).toBe(false);
+                        expect(semver.satisfies(semver.coerce(version), constraint)).toBe(false);
                     });
                 });
             });

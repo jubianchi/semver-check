@@ -44,7 +44,7 @@ const explode = range => {
 export default {
     ...semver,
     satisfies: (version, constraint, options = {}) => {
-        return semver.satisfies(version, constraint.raw, { ...options, includePrerelease: true });
+        return semver.satisfies(version.raw, constraint.raw, { ...options, includePrerelease: true });
     },
     cleanRange: range =>
         range
