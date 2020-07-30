@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { DebounceInput } from 'react-debounce-input';
 
@@ -35,7 +35,13 @@ export default class Constraint extends Component {
             <Fragment>
                 <div className="input-group">
                     <div className="input-group-prepend">
-                        <span className={`input-group-text text-light ${valid ? 'bg-success border-success' : 'bg-danger border-danger'}`}>Constraint</span>
+                        <span
+                            className={`input-group-text text-light ${
+                                valid ? 'bg-success border-success' : 'bg-danger border-danger'
+                            }`}
+                        >
+                            Constraint
+                        </span>
                     </div>
                     <DebounceInput
                         className={`form-control ${valid ? 'is-valid' : 'is-invalid'}`}
@@ -46,11 +52,7 @@ export default class Constraint extends Component {
                         debounceTimeout={150}
                     />
                 </div>
-                { valid || (
-                    <small className="form-text text-danger">
-                        This constraint is invalid.
-                    </small>
-                )}
+                {valid || <small className="form-text text-danger">This constraint is invalid.</small>}
             </Fragment>
         );
     }

@@ -25,7 +25,9 @@ const Implementations = props => (
                 </li>
                 <li>
                     See how <a href="https://getcomposer.org/">Composer</a> handles constraints:{' '}
-                    <a href="https://getcomposer.org/doc/01-basic-usage.md#package-version-constraints">Package Versions</a>
+                    <a href="https://getcomposer.org/doc/01-basic-usage.md#package-version-constraints">
+                        Package Versions
+                    </a>
                 </li>
                 <li>
                     See how <a href="http://bundler.io/">Bundler</a> handles constraints:{' '}
