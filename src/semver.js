@@ -100,14 +100,13 @@ export default {
             Object.assign(coerced, explode(range.replace(/^~>/, '')));
 
             if (coerced.major !== null && coerced.minor !== null && coerced.patch !== null) {
-                coerced.raw = `>=${coerced.major}.${coerced.minor || 0}.${coerced.patch || 0} <${
-                    coerced.major
-                }.${parseInt(coerced.minor, 10) + 1}.0`;
+                coerced.raw = `>=${coerced.major}.${coerced.minor || 0}.${coerced.patch || 0} <${coerced.major}.${
+                    parseInt(coerced.minor, 10) + 1
+                }.0`;
             } else {
-                coerced.raw = `>=${coerced.major}.${coerced.minor || 0}.${coerced.patch || 0} <${parseInt(
-                    coerced.major,
-                    10,
-                ) + 1}.0.0`;
+                coerced.raw = `>=${coerced.major}.${coerced.minor || 0}.${coerced.patch || 0} <${
+                    parseInt(coerced.major, 10) + 1
+                }.0.0`;
             }
         }
 

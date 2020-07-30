@@ -61,9 +61,9 @@ const ConnectedRouter = connect(
 
 export default () => (
     <Switch>
-        <Route exact path="/" component={ConnectedRouter} />
-        <Route exact path="/constraint/:constraint" component={ConnectedRouter} />
-        <Route exact path="/version/:version" component={ConnectedRouter} />
-        <Route exact path="/:constraint/:version" component={ConnectedRouter} />
+        <Route exact path="/" render={props => <ConnectedRouter {...props} />} />
+        <Route exact path="/constraint/:constraint" render={props => <ConnectedRouter {...props} />} />
+        <Route exact path="/version/:version" render={props => <ConnectedRouter {...props} />} />
+        <Route exact path="/:constraint/:version" render={props => <ConnectedRouter {...props} />} />
     </Switch>
 );
