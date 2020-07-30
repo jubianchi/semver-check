@@ -9,7 +9,7 @@ import WhyStrict from './WhyStrict';
 import WhyLoose from './WhyLoose';
 import Footer from './Footer';
 import Router from './Router';
-import CopyUrl from "./CopyUrl";
+import CopyUrl from './CopyUrl';
 
 class App extends Component {
     render() {

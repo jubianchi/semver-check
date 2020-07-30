@@ -19,6 +19,7 @@ export const pushVersion = version => (dispatch, getState) => {
         dispatch(push(`/`));
     }
 };
+
 export const pushConstraint = constraint => (dispatch, getState) => {
     const state = getState();
 
