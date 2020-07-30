@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Footer.css';
+import './Footer.scss';
 
 const Footer = props => (
     <footer className="bg-light px-3 pt-3">

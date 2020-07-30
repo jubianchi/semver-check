@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Quote.css';
+import './Quote.scss';
 
 const Quote = props => (
     <blockquote className={`blockquote pl-3 ${props.className}`}>
