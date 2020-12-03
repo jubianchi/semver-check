@@ -2,7 +2,6 @@
 
 [![Build Status](https://travis-ci.org/jubianchi/semver-check.svg?branch=master)](https://travis-ci.org/jubianchi/semver-check)
 [![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![Greenkeeper badge](https://badges.greenkeeper.io/jubianchi/semver-check.svg)](https://greenkeeper.io/)
 
 A basic web app coded with ReactJS to check a version against a SemVer constraint.
 
