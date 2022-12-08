@@ -19,7 +19,7 @@ const Why = props => (
             <p>
                 More and more projects try to follow Semantic Versioning to reduce package versioning nightmare and
                 every dependency manager implements its own semantic versioner.{' '}
-                <a href="https://getcomposer.org/">Composer</a> and <a href="https://www.npmjs.org/">NPM</a> for example
+                <a href="https://getcomposer.org/">Composer</a> and <a href="https://www.npmjs.org/">npm</a> for example
                 don't handle version constraints the same way. It's hard sometimes to be sure how some library version
                 will behave against some constraint.
             </p>
