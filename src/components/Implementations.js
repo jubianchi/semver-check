@@ -15,12 +15,12 @@ const Implementations = props => (
             <p>
                 Without any formal specification about constraint, dependency managers sometimes handle or express them
                 differently. For example, the tilde-range constraint (<code>~x.y</code>) does not work the same way in{' '}
-                <a href="https://www.npmjs.org/">NPM</a> and <a href="https://getcomposer.org">Composer</a>.
+                <a href="https://www.npmjs.org/">npm</a> and <a href="https://getcomposer.org">Composer</a>.
             </p>
 
             <ul>
                 <li>
-                    See how <a href="https://www.npmjs.org/">NPM</a> handles constraints:{' '}
+                    See how <a href="https://www.npmjs.org/">npm</a> handles constraints:{' '}
                     <a href="https://github.com/npm/node-semver">npm/node-semver</a>
                 </li>
                 <li>
