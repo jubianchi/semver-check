@@ -12,6 +12,7 @@
   "dependencies": {
     "bootstrap": "^4.1.3",
     "connected-react-router": "^6.0.0",
+    "fsevents": "^2.3.3",
     "history": "^4.7.2",
     "prop-types": "^15.6.2",
     "react": "^16.13.1",
@@ -30,14 +31,14 @@
     "conventional-changelog-cli": "^2.0.34",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.5.0",
-    "node-sass-chokidar": "^1.3.3",
     "npm-run-all": "^4.1.3",
     "prettier": "^2.0.5",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "sass": "^1.69.5"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css": "sass --load-path ./src --load-path ./node_modules src:src",
+    "watch-css": "npm run build-css && sass --load-path ./src --load-path ./node_modules src:src --watch",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
