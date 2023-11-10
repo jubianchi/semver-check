@@ -22,3 +22,4 @@ yarn-error.log*
 
 # css
 src/components/*.css
+src/components/*.css.map
